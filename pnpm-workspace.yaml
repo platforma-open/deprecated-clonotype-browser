@@ -15,10 +15,6 @@ catalog:
 
   '@milaboratory/tengo-sdk': ^1.2.1
 
-  # for tests to work
-  '@milaboratory/pframes-conv': ^0.4.25
-  '@milaboratory/mixcr': 4.7.0-70-develop
-
   '@milaboratory/platforma-uikit': ^1.1.4
   '@milaboratory/sdk-vue': ^1.1.1
   '@milaboratory/helpers': ^1.5.3
@@ -49,3 +45,5 @@ catalog:
 
   '@milaboratory/milaboratories.samples-and-data': 1.1.6
   '@milaboratory/milaboratories.samples-and-data.model': 1.1.1
+  '@milaboratory/milaboratories.mixcr-clonotyping': 1.0.1
+  '@milaboratory/milaboratories.mixcr-clonotyping.model': 1.0.1

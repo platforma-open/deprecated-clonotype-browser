@@ -22,12 +22,12 @@
       "ui": "@milaboratory/milaboratories.clone-browser.ui/dist"
     },
     "meta": {
-      "title": "MiXCR Clonotyping",
+      "title": "Clone Browser",
       "logo": "file:logos/block-logo.png",
       "url": "https://github.com/milaboratory/block-mixcr-clonotyping",
       "docs": "https://github.com/milaboratory/block-mixcr-clonotyping/docs",
       "support": "mailto:support@milaboratories.com",
-      "description": "Extract TCR / BCR Clonotypes from next generation sequencing data",
+      "description": "Browse clones from clonotyping blocks",
       "longDescription": "file:./docs/description.md",
       "changelog": "file:CHANGELOG.md",
       "tags": [],

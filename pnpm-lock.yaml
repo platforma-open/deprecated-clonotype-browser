@@ -24,18 +24,18 @@ catalogs:
     '@milaboratory/helpers':
       specifier: ^1.5.3
       version: 1.5.3
+    '@milaboratory/milaboratories.mixcr-clonotyping':
+      specifier: 1.0.1
+      version: 1.0.1
+    '@milaboratory/milaboratories.mixcr-clonotyping.model':
+      specifier: 1.0.1
+      version: 1.0.1
     '@milaboratory/milaboratories.samples-and-data':
       specifier: 1.1.6
       version: 1.1.6
     '@milaboratory/milaboratories.samples-and-data.model':
       specifier: 1.1.1
       version: 1.1.1
-    '@milaboratory/mixcr':
-      specifier: 4.7.0-70-develop
-      version: 4.7.0-70-develop
-    '@milaboratory/pframes-conv':
-      specifier: ^0.4.25
-      version: 0.4.26
     '@milaboratory/pl-block-tools':
       specifier: ^2.1.5
       version: 2.1.5
@@ -136,6 +136,12 @@ importers:
 
   test:
     dependencies:
+      '@milaboratory/milaboratories.mixcr-clonotyping':
+        specifier: 'catalog:'
+        version: 1.0.1(typescript@5.5.4)
+      '@milaboratory/milaboratories.mixcr-clonotyping.model':
+        specifier: 'catalog:'
+        version: 1.0.1
       '@milaboratory/milaboratories.samples-and-data':
         specifier: 'catalog:'
         version: 1.1.6(typescript@5.5.4)
@@ -213,12 +219,6 @@ importers:
 
   workflow:
     devDependencies:
-      '@milaboratory/mixcr':
-        specifier: 'catalog:'
-        version: 4.7.0-70-develop
-      '@milaboratory/pframes-conv':
-        specifier: 'catalog:'
-        version: 0.4.26
       '@milaboratory/sdk-test':
         specifier: 'catalog:'
         version: 1.5.5(@milaboratory/sdk-model@1.3.9)(@types/node@22.0.0)
@@ -228,12 +228,6 @@ importers:
       '@milaboratory/tengo-template-builder':
         specifier: 'catalog:'
         version: 1.13.0
-      typescript:
-        specifier: 'catalog:'
-        version: 5.5.4
-      vitest:
-        specifier: 'catalog:'
-        version: 2.0.5(@types/node@22.0.0)
 
 packages:
 
@@ -850,6 +844,18 @@ packages:
   '@milaboratory/helpers@1.5.3':
     resolution: {integrity: sha512-NYxQidKlohXtlV/SkPe7TE2VMw21h+vouRjj6133fQMD/ttowVLQOVmQU9hC8Xx4wrby5dSPBKh/s1tgbuIB6w==, tarball: https://npm.pkg.github.com/download/@milaboratory/helpers/1.5.3/901706849014c6e7508aa8a9beea07cd5c208925}
 
+  '@milaboratory/milaboratories.mixcr-clonotyping.model@1.0.1':
+    resolution: {integrity: sha512-6bbWCdHYZAmya2IEj9zrR6MQsDB2EPNgrQdUTOCajp4F9c6SVcoYW+rfVE4uPCTx1O953wAmwHO2Ig7YlDY3yw==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.mixcr-clonotyping.model/1.0.1/49bbc7d8acc6b1ab2fd5044a2a3afa597b65f83b}
+
+  '@milaboratory/milaboratories.mixcr-clonotyping.ui@1.0.1':
+    resolution: {integrity: sha512-c85RnK/WXEb93/FQCTbWuEMjloX2tX9dcInfoqAfkx3mXGKSv8wZvGoUAR/S4++7me8H96GDfiClcDMJ3rdKWg==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.mixcr-clonotyping.ui/1.0.1/1467d68443dfbb48eeb112313b655b634b97bb97}
+
+  '@milaboratory/milaboratories.mixcr-clonotyping.workflow@1.0.1':
+    resolution: {integrity: sha512-FN0y3lLlHLemKA51gCykmm6532TjqAvyb9SYPXu+p4vpSOUSGpxQUZplkkhcATIPnrceDEniIeszpUEV7vbneA==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.mixcr-clonotyping.workflow/1.0.1/822e8085517683b6c80e9cd11b25fcdd92866f16}
+
+  '@milaboratory/milaboratories.mixcr-clonotyping@1.0.1':
+    resolution: {integrity: sha512-kVXxlsTksrVbw1SJiwfQWStWbvkBG4rCvsgTgwmQfKp2TFkYQhPh0acM01s79eGOfyAEEC0VGQ6YKdoNfZF5iw==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.mixcr-clonotyping/1.0.1/0c274a08182f5fbfb64c4f40f94710eaccd4bcfe}
+
   '@milaboratory/milaboratories.samples-and-data.model@1.1.1':
     resolution: {integrity: sha512-ZsJpyirY9RRz1MPX7DTfWGywEdzACjass+uAm6B7TWEWeM6kb/MYRTfgElsK6OQ0WR0qJwXxrbdrrtXE8caWGg==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.samples-and-data.model/1.1.1/cd217e943a323d6cdd3a6143113d5bb1a89b69ec}
 
@@ -861,12 +867,6 @@ packages:
 
   '@milaboratory/milaboratories.samples-and-data@1.1.6':
     resolution: {integrity: sha512-uDJJQwaYSS18RYWJzA111IErQdYpXJuEQiJ2rLSBePBU1dNj8SfJwQcDvehKrx9YetPYMbBsQbS9EcscJMjvzg==, tarball: https://npm.pkg.github.com/download/@milaboratory/milaboratories.samples-and-data/1.1.6/50d9dd671f9a1307cdcddb4f3bc67e6eb47e8cc8}
-
-  '@milaboratory/mixcr@4.7.0-70-develop':
-    resolution: {integrity: sha512-C/GGIzrrow07uQnx7Pqr3z+kF9jDLFUOKfHjZMwWQBhe+tN+0SoVLSh+TRGXgfD7SnS8CinKs/xz7yAKWx6+Mw==, tarball: https://npm.pkg.github.com/download/@milaboratory/mixcr/4.7.0-70-develop/26e2a7be5d49630243d7e32ae44925e17e07db41}
-
-  '@milaboratory/pframes-conv@0.4.26':
-    resolution: {integrity: sha512-pPfr3tld22EcjtwLrf7dI5o7EwB3f3rkmyvDzYpE0NuQ92SmgSuEVzUUy8r/WmL2UQhHCVG+HJIFINz5nSpxBw==, tarball: https://npm.pkg.github.com/download/@milaboratory/pframes-conv/0.4.26/8e913dd0c25060f11eaa2ce185fe206289f42be7}
 
   '@milaboratory/pframes-node@0.4.22':
     resolution: {integrity: sha512-AKCnP/j5GNSiN/wutuMBidSm37Q6s50fSzvcgkRMUvSKaBOI5icpjcJsgSCsQIJtWHM57dnUwv4DKWJ6cNP8FQ==, tarball: https://npm.pkg.github.com/download/@milaboratory/pframes-node/0.4.22/c5e0ccd8e04f3a0e154f164b9fd173b3298d8827}
@@ -3890,6 +3890,42 @@ snapshots:
 
   '@milaboratory/helpers@1.5.3': {}
 
+  '@milaboratory/milaboratories.mixcr-clonotyping.model@1.0.1':
+    dependencies:
+      '@milaboratory/sdk-ui': 0.12.22
+      zod: 3.23.8
+
+  '@milaboratory/milaboratories.mixcr-clonotyping.ui@1.0.1(typescript@5.5.4)':
+    dependencies:
+      '@ag-grid-community/client-side-row-model': 32.1.0
+      '@ag-grid-community/core': 32.1.0
+      '@ag-grid-community/styles': 32.1.0
+      '@ag-grid-community/vue3': 32.1.0(typescript@5.5.4)
+      '@milaboratory/helpers': 1.5.3
+      '@milaboratory/milaboratories.mixcr-clonotyping.model': 1.0.1
+      '@milaboratory/platforma-uikit': 1.1.4(typescript@5.5.4)
+      '@milaboratory/sdk-ui': 0.12.22
+      '@milaboratory/sdk-vue': 1.1.2(@milaboratory/helpers@1.5.3)(@milaboratory/sdk-ui@0.12.22)(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
+      '@vueuse/core': 11.0.3(vue@3.4.38(typescript@5.5.4))
+      utility-types: 3.11.0
+      vue: 3.4.38(typescript@5.5.4)
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+
+  '@milaboratory/milaboratories.mixcr-clonotyping.workflow@1.0.1': {}
+
+  '@milaboratory/milaboratories.mixcr-clonotyping@1.0.1(typescript@5.5.4)':
+    dependencies:
+      '@milaboratory/milaboratories.mixcr-clonotyping.model': 1.0.1
+      '@milaboratory/milaboratories.mixcr-clonotyping.ui': 1.0.1(typescript@5.5.4)
+      '@milaboratory/milaboratories.mixcr-clonotyping.workflow': 1.0.1
+      '@milaboratory/sdk-ui': 0.12.22
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+
   '@milaboratory/milaboratories.samples-and-data.model@1.1.1':
     dependencies:
       '@milaboratory/sdk-ui': 0.12.21
@@ -3922,10 +3958,6 @@ snapshots:
       '@milaboratory/sdk-ui': 0.12.21
     transitivePeerDependencies:
       - typescript
-
-  '@milaboratory/mixcr@4.7.0-70-develop': {}
-
-  '@milaboratory/pframes-conv@0.4.26': {}
 
   '@milaboratory/pframes-node@0.4.22(@milaboratory/sdk-model@1.3.9)':
     dependencies:

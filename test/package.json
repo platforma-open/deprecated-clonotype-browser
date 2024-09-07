@@ -12,7 +12,9 @@
   "dependencies": {
     "this-block": "workspace:@milaboratory/milaboratories.clone-browser@*",
     "@milaboratory/milaboratories.samples-and-data.model": "catalog:",
-    "@milaboratory/milaboratories.samples-and-data": "catalog:"
+    "@milaboratory/milaboratories.samples-and-data": "catalog:",
+    "@milaboratory/milaboratories.mixcr-clonotyping.model": "catalog:",
+    "@milaboratory/milaboratories.mixcr-clonotyping": "catalog:"
   },
   "devDependencies": {
     "@milaboratory/sdk-test": "catalog:",
