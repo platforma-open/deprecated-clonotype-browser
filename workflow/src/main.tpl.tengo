@@ -1,0 +1,8 @@
+wf := import("@milaboratory/tengo-sdk:workflow")
+
+wf.body(func(args) {
+	return {
+		outputs: {},
+		exports: {}
+	}
+})

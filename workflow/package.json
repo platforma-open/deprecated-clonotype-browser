@@ -1,0 +1,23 @@
+{
+  "name": "@milaboratory/milaboratories.clone-browser.workflow",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Tengo-based template",
+  "//": {
+    "build": "node ./scripts/build-static.mjs src/pfconv_params.json src/pfconv_params.lib.tengo && rm -rf dist && pl-tengo check && pl-tengo build"
+  },
+  "scripts": {
+    "build": "rm -rf dist && pl-tengo check && pl-tengo build",
+    "format": "/usr/bin/env emacs --script ./format.el",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@milaboratory/tengo-template-builder": "catalog:",
+    "@milaboratory/tengo-sdk": "catalog:",
+    "@milaboratory/pframes-conv": "catalog:",
+    "@milaboratory/mixcr": "catalog:",
+    "@milaboratory/sdk-test": "catalog:",
+    "vitest": "catalog:",
+    "typescript": "catalog:"
+  }
+}

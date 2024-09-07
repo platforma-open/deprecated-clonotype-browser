@@ -1,0 +1,32 @@
+{
+  "name": "@milaboratory/milaboratories.clone-browser.ui",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "watch": "vue-tsc && vite build --watch",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ag-grid-community/client-side-row-model": "catalog:",
+    "@ag-grid-community/core": "catalog:",
+    "@ag-grid-community/styles": "catalog:",
+    "@ag-grid-community/vue3": "catalog:",
+    "@milaboratory/helpers": "catalog:",
+    "@milaboratory/milaboratories.clone-browser.model": "workspace:*",
+    "@milaboratory/platforma-uikit": "catalog:",
+    "@milaboratory/sdk-ui": "catalog:",
+    "@milaboratory/sdk-vue": "catalog:",
+    "utility-types": "catalog:",
+    "vue": "catalog:",
+    "@vueuse/core": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

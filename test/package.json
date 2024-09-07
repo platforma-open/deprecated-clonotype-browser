@@ -1,0 +1,22 @@
+{
+  "name": "@milaboratory/milaboratories.clone-browser.test",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Block tests",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "files": [],
+  "keywords": [],
+  "dependencies": {
+    "this-block": "workspace:@milaboratory/milaboratories.clone-browser@*",
+    "@milaboratory/milaboratories.samples-and-data.model": "catalog:",
+    "@milaboratory/milaboratories.samples-and-data": "catalog:"
+  },
+  "devDependencies": {
+    "@milaboratory/sdk-test": "catalog:",
+    "vitest": "catalog:",
+    "typescript": "catalog:"
+  }
+}
