@@ -8,7 +8,12 @@ import { awaitStableState, blockTest } from '@milaboratory/sdk-test';
 import { blockSpec as samplesAndDataBlockSpec } from '@milaboratory/milaboratories.samples-and-data';
 import { BlockArgs as SamplesAndDataBlockArgs } from '@milaboratory/milaboratories.samples-and-data.model';
 import { blockSpec as clonotypingSpec } from '@milaboratory/milaboratories.mixcr-clonotyping';
-import { InferBlockState, wrapOutputs } from '@milaboratory/sdk-ui';
+import { blockSpec as myBlockSpec } from 'this-block';
+import {
+  platforma as myPlatforma,
+  UiState as MyUiState
+} from '@milaboratory/milaboratories.clone-browser.model';
+import { InferBlockState, InferOutputsType, wrapOutputs } from '@milaboratory/sdk-ui';
 import * as tp from 'node:timers/promises';
 
 blockTest(
@@ -17,6 +22,7 @@ blockTest(
   async ({ rawPrj: project, ml, helpers, expect }) => {
     const sndBlockId = await project.addBlock('Samples & Data', samplesAndDataBlockSpec);
     const clonotypingBlockId = await project.addBlock('MiXCR Clonotyping', clonotypingSpec);
+    const cloneBrowserBlockId = await project.addBlock('Clone Browser', myBlockSpec);
 
     const sample1Id = uniquePlId();
     const metaColumn1Id = uniquePlId();
@@ -127,5 +133,36 @@ blockTest(
       }
     });
     expect(clonesPfColumnList).length.to.greaterThanOrEqual(7);
+
+    const cloneBrowserState = project.getBlockState(cloneBrowserBlockId);
+
+    const cloneBrowserStableState1 = (await awaitStableState(
+      cloneBrowserState,
+      15000
+    )) as InferBlockState<typeof myPlatforma>;
+    const cloneBrowserOutputs1 = wrapOutputs<InferOutputsType<typeof myPlatforma>>(
+      cloneBrowserStableState1.outputs
+    );
+
+    expect(cloneBrowserOutputs1.table).toBeUndefined();
+    expect(cloneBrowserOutputs1.inputOptions).toHaveLength(1);
+    expect(cloneBrowserOutputs1.inputOptions[0]).toMatchObject({ blockId: clonotypingBlockId });
+
+    await project.setUiState(cloneBrowserBlockId, {
+      inputBlockId: clonotypingBlockId
+    } satisfies MyUiState);
+
+    const cloneBrowserStableState2 = (await awaitStableState(
+      cloneBrowserState,
+      15000
+    )) as InferBlockState<typeof myPlatforma>;
+    const cloneBrowserOutputs2 = wrapOutputs<InferOutputsType<typeof myPlatforma>>(
+      cloneBrowserStableState2.outputs
+    );
+    const tableHandle = cloneBrowserOutputs2.table!;
+    expect(cloneBrowserOutputs2.table).toBeDefined();
+
+    const spec = await ml.driverKit.pFrameDriver.getSpec(tableHandle);
+    console.dir(spec, { depth: 5 });
   }
 );

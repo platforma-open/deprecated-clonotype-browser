@@ -2,137 +2,72 @@ import {
   BlockModel,
   InferHrefType,
   Option,
+  PColumn,
+  PObject,
+  PObjectSpec,
   Ref,
+  TreeNodeAccessor,
   isPColumn,
   isPColumnSpec,
   type InferOutputsType
 } from '@milaboratory/sdk-ui';
 
-export const platforma = BlockModel.create<{}>('Heavy')
+function getClonotypeColumnBlockId(spec: PObjectSpec): string | undefined {
+  if (!isPColumnSpec(spec)) return undefined;
+  if (
+    spec.axesSpec.length !== 3 ||
+    spec.axesSpec[0].name !== 'pl7.app/sampleId' ||
+    spec.axesSpec[1].name !== 'pl7.app/vdj/chain' ||
+    spec.axesSpec[2].name !== 'pl7.app/vdj/cloneId'
+  )
+    return undefined;
+  return spec.axesSpec[2]?.domain?.['pl7.app/blockId'];
+}
+
+export type UiState = { inputBlockId: string };
+
+export const platforma = BlockModel.create<{}, { inputBlockId: string }>('Heavy')
 
   .initialArgs({})
 
-  .output('inputOptions', (ctx) => [] as Option[])
+  .output('inputOptions', (ctx) => {
+    const potentialBlocks = new Set<string>();
+    for (const e of ctx.resultPool.getSpecsFromResultPool().entries) {
+      const blockId = getClonotypeColumnBlockId(e.obj);
+      if (blockId === undefined) continue;
+      potentialBlocks.add(blockId);
+    }
 
-  // .output('preset', (ctx) =>
-  //   ctx.prerun
-  //     ?.resolve({ field: 'preset', assertFieldType: 'Input', allowPermanentAbsence: true })
-  //     ?.getDataAsJson<any>()
-  // )
+    return [...potentialBlocks].map((blockId) => ({
+      blockId,
+      label: ctx.getBlockLabel(blockId)
+    }));
+  })
 
-  // .output('qc', (ctx) =>
-  //   parseResourceMap(ctx.outputs?.resolve({ field: 'qc', assertFieldType: 'Input' }), (acc) =>
-  //     acc.getFileHandle()
-  //   )
-  // )
+  .output('table', (ctx) => {
+    const blockId = ctx.uiState?.inputBlockId;
+    if (blockId === undefined) return undefined;
 
-  // .output('reports', (ctx) =>
-  //   parseResourceMap(ctx.outputs?.resolve({ field: 'reports', assertFieldType: 'Input' }), (acc) =>
-  //     acc.getFileHandle()
-  //   )
-  // )
+    const columns = new Set<string>();
+    for (const e of ctx.resultPool.getSpecsFromResultPool().entries) {
+      const blockId = getClonotypeColumnBlockId(e.obj);
+      if (blockId === undefined) continue;
+      columns.add(`${e.ref.blockId}:${e.ref.name}`);
+    }
 
-  // .output('logs', (ctx) => {
-  //   return ctx.outputs !== undefined
-  //     ? parseResourceMap(ctx.outputs?.resolve({ field: 'logs', assertFieldType: 'Input' }), (acc) =>
-  //         acc.getLogHandle()
-  //       )
-  //     : undefined;
-  // })
-
-  // .output('progress', (ctx) => {
-  //   return ctx.outputs !== undefined
-  //     ? parseResourceMap(ctx.outputs?.resolve({ field: 'logs', assertFieldType: 'Input' }), (acc) =>
-  //         acc.getProgressLog(ProgressPrefix)
-  //       )
-  //     : undefined;
-  // })
-
-  // .output('done', (ctx) => {
-  //   return ctx.outputs !== undefined
-  //     ? parseResourceMap(
-  //         ctx.outputs?.resolve({ field: 'clns', assertFieldType: 'Input' }),
-  //         (acc) => true
-  //       ).data.map((e) => e.key[0] as string)
-  //     : undefined;
-  // })
-
-  // .output('clones', (ctx) => {
-  //   const collection = ctx.outputs
-  //     ?.resolve({ field: 'clones', assertFieldType: 'Input' })
-  //     ?.parsePObjectCollection();
-  //   if (collection === undefined) return undefined;
-  //   // if (collection === undefined || !collection.isComplete) return undefined;
-  //   const pColumns = Object.entries(collection)
-  //     .map(([id, obj]) => obj)
-  //     .filter(isPColumn);
-  //   return ctx.createPFrame(pColumns);
-  // })
-
-  // .output('inputOptions', (ctx) => {
-  //   const spectFromPool = ctx.resultPool.getSpecsFromResultPool();
-  //   return ctx.resultPool
-  //     .getSpecsFromResultPool()
-  //     .entries.filter((v) => {
-  //       if (!isPColumnSpec(v.obj)) return false;
-  //       const domain = v.obj.domain;
-  //       return (
-  //         v.obj.name === 'pl7.app/sequencing/data' &&
-  //         (v.obj.valueType as string) === 'File' &&
-  //         domain !== undefined &&
-  //         (domain['pl7.app/fileExtension'] === 'fastq' ||
-  //           domain['pl7.app/fileExtension'] === 'fastq.gz')
-  //       );
-  //     })
-  //     .map(
-  //       (v) =>
-  //         ({
-  //           ref: v.ref,
-  //           label: `${ctx.getBlockLabel(v.ref.blockId)} / ${
-  //             v.obj.annotations?.['pl7.app/label'] ?? `unlabelled`
-  //           }`
-  //         } satisfies Option)
-  //     );
-  // })
-
-  // .output('sampleLabels', (ctx) => {
-  //   const inputRef = ctx.args.input;
-  //   if (inputRef === undefined) return undefined;
-  //   // @todo implement getSpecByRef method
-  //   const inputSpec = ctx.resultPool
-  //     .getSpecsFromResultPool()
-  //     .entries.find(
-  //       (obj) => obj.ref.blockId === inputRef.blockId && obj.ref.name === inputRef.name
-  //     )?.obj;
-  //   if (inputSpec === undefined || !isPColumnSpec(inputSpec)) return undefined;
-  //   const sampleAxisSpec = inputSpec.axesSpec[0];
-
-  //   // @todo implement get by spec
-  //   const sampleLabelsObj = ctx.resultPool.getDataFromResultPool().entries.find((f) => {
-  //     const spec = f.obj.spec;
-  //     if (!isPColumnSpec(spec)) return false;
-  //     if (spec.name !== 'pl7.app/label' || spec.axesSpec.length !== 1) return false;
-  //     const axisSpec = spec.axesSpec[0];
-  //     if (axisSpec.name !== sampleAxisSpec.name) return false;
-  //     if (sampleAxisSpec.domain === undefined || Object.keys(sampleAxisSpec.domain).length === 0)
-  //       return true;
-  //     if (axisSpec.domain === undefined) return false;
-  //     for (const [domainName, domainValue] of Object.entries(sampleAxisSpec.domain))
-  //       if (axisSpec.domain[domainName] !== domainValue) return false;
-  //     return true;
-  //   });
-
-  //   if (sampleLabelsObj === undefined) return undefined;
-
-  //   // if (sampleLabelsObj.obj.data.resourceType.name !== 'PColumn/Json') return undefined;
-
-  //   return Object.fromEntries(
-  //     Object.entries(sampleLabelsObj.obj.data.getDataAsJson<Record<string, string>>()).map((e) => [
-  //       JSON.parse(e[0])[0],
-  //       e[1]
-  //     ])
-  //   ) satisfies Record<string, string>;
-  // })
+    const data: PColumn<TreeNodeAccessor>[] = [];
+    for (const e of ctx.resultPool.getDataFromResultPool().entries) {
+      const refId = `${e.ref.blockId}:${e.ref.name}`;
+      if (!columns.delete(refId)) continue;
+      data.push(e.obj as PColumn<TreeNodeAccessor>);
+    }
+    if (columns.size !== 0) return undefined;
+    return ctx.createPTable({
+      src: { type: 'full', entries: data.map((o) => ({ type: 'column', column: o })) },
+      filters: [],
+      sorting: []
+    });
+  })
 
   .sections((ctx) => {
     return [{ type: 'link', href: '/', label: 'Browser' }];
