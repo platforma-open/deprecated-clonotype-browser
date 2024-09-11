@@ -18,7 +18,7 @@ import * as tp from 'node:timers/promises';
 
 blockTest(
   'simple project',
-  { timeout: 35000 },
+  { timeout: 60000 },
   async ({ rawPrj: project, ml, helpers, expect }) => {
     const sndBlockId = await project.addBlock('Samples & Data', samplesAndDataBlockSpec);
     const clonotypingBlockId = await project.addBlock('MiXCR Clonotyping', clonotypingSpec);

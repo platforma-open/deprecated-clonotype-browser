@@ -5,6 +5,7 @@ import { PlDropdown, PlTextArea } from '@milaboratory/platforma-uikit';
 import { computed, ref, watch } from 'vue';
 import { asyncComputed, useTimeoutPoll } from '@vueuse/core';
 import { AnyLogHandle } from '@milaboratory/sdk-ui';
+import { PlAgDataTable, PlDataTableSettings } from '@milaboratory/sdk-vue';
 
 const app = useApp();
 
@@ -15,11 +16,47 @@ const inputOptions = computed(() =>
   }))
 );
 
+const uiState = app.createUiModel({}, () => ({}))
+
+const tableSettings = computed<PlDataTableSettings>(() => ({
+  sourceType: "pframe",
+
+  pTable: app.outputs.table,
+
+  sheets: [
+    {
+      id: "samples",
+      axis: {
+        type: "String",
+        name: "pl7.app/sampleId",
+      },
+      options: app.outputValues.sampleLabels ?? [],
+      // defaultValue: "TRA",
+    },
+    {
+      id: "chains",
+      axis: {
+        name: "pl7.app/vdj/chain",
+        type: "String",
+      },
+      options: [
+        { text: "TRA", value: "TRA" },
+        { text: "TRB", value: "TRB" },
+        { text: "IGH", value: "IGH" },
+        { text: "IGK", value: "IGK" },
+        { text: "IGL", value: "IGL" },
+      ],
+      // defaultValue: "TRA",
+    }
+  ],
+}));
+
 </script>
 
 <template>
   <div class="container">
-    Hi!
+    <pl-dropdown :options="inputOptions ?? []" v-model="uiState.model.inputBlockId" label="Select dataset" clearable />
+    <PlAgDataTable v-model="uiState.model.tableState" :settings="tableSettings"></PlAgDataTable>
   </div>
 </template>
 
