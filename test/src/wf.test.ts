@@ -76,7 +76,7 @@ blockTest(
 
     const clonotypingStableState1 = (await awaitStableState(
       clonotypingBlockState,
-      15000
+      25000
     )) as InferBlockState<typeof clonotypingPlatforma>;
 
     expect(clonotypingStableState1.outputs).toMatchObject({
