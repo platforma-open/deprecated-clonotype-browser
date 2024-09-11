@@ -11,7 +11,7 @@ const app = useApp();
 const inputOptions = computed(() =>
   app.getOutputFieldOkOptional("inputOptions")?.map((v) => ({
     text: v.label,
-    value: v.ref,
+    value: v.blockId
   }))
 );
 
