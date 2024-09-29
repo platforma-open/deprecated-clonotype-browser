@@ -92,13 +92,13 @@ importers:
 
   .:
     dependencies:
-      '@platforma-open/milaboratories.clone-browser.model':
+      '@platforma-open/milaboratories.clonotype-browser.model':
         specifier: workspace:*
         version: link:model
-      '@platforma-open/milaboratories.clone-browser.ui':
+      '@platforma-open/milaboratories.clonotype-browser.ui':
         specifier: workspace:*
         version: link:ui
-      '@platforma-open/milaboratories.clone-browser.workflow':
+      '@platforma-open/milaboratories.clonotype-browser.workflow':
         specifier: workspace:*
         version: link:workflow
       '@platforma-sdk/model':
@@ -149,7 +149,7 @@ importers:
         specifier: 'catalog:'
         version: 1.3.0
       this-block:
-        specifier: workspace:@platforma-open/milaboratories.clone-browser@*
+        specifier: workspace:@platforma-open/milaboratories.clonotype-browser@*
         version: link:..
     devDependencies:
       '@platforma-sdk/test':
@@ -182,7 +182,7 @@ importers:
       '@milaboratories/uikit':
         specifier: 'catalog:'
         version: 1.2.5(typescript@5.5.4)
-      '@platforma-open/milaboratories.clone-browser.model':
+      '@platforma-open/milaboratories.clonotype-browser.model':
         specifier: workspace:*
         version: link:../model
       '@platforma-sdk/model':

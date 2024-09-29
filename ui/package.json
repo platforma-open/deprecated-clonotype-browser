@@ -1,5 +1,5 @@
 {
-  "name": "@platforma-open/milaboratories.clone-browser.ui",
+  "name": "@platforma-open/milaboratories.clonotype-browser.ui",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "@ag-grid-community/styles": "catalog:",
     "@ag-grid-community/vue3": "catalog:",
     "@milaboratories/helpers": "catalog:",
-    "@platforma-open/milaboratories.clone-browser.model": "workspace:*",
+    "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
     "@milaboratories/uikit": "catalog:",
     "@platforma-sdk/model": "catalog:",
     "@platforma-sdk/ui-vue": "catalog:",

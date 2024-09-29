@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { platforma } from '@platforma-open/milaboratories.clone-browser.model';
+import { platforma } from '@platforma-open/milaboratories.clonotype-browser.model';
 import { useApp } from './app';
 import { PlDropdown, PlTextArea } from '@milaboratories/uikit';
 import { computed, ref, watch } from 'vue';

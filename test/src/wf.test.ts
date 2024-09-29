@@ -12,7 +12,7 @@ import { blockSpec as myBlockSpec } from 'this-block';
 import {
   platforma as myPlatforma,
   UiState as MyUiState
-} from '@platforma-open/milaboratories.clone-browser.model';
+} from '@platforma-open/milaboratories.clonotype-browser.model';
 import { InferBlockState, InferOutputsType, wrapOutputs } from '@platforma-sdk/model';
 import * as tp from 'node:timers/promises';
 

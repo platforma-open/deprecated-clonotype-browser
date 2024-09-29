@@ -1,5 +1,5 @@
 {
-  "name": "@platforma-open/milaboratories.clone-browser",
+  "name": "@platforma-open/milaboratories.clonotype-browser",
   "version": "1.0.0",
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
@@ -11,23 +11,23 @@
   ],
   "dependencies": {
     "@platforma-sdk/model": "catalog:",
-    "@platforma-open/milaboratories.clone-browser.workflow": "workspace:*",
-    "@platforma-open/milaboratories.clone-browser.model": "workspace:*",
-    "@platforma-open/milaboratories.clone-browser.ui": "workspace:*"
+    "@platforma-open/milaboratories.clonotype-browser.workflow": "workspace:*",
+    "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
+    "@platforma-open/milaboratories.clonotype-browser.ui": "workspace:*"
   },
   "block": {
     "components": {
-      "workflow": "@platforma-open/milaboratories.clone-browser.workflow/dist/tengo/tpl/main.plj.gz",
-      "model": "@platforma-open/milaboratories.clone-browser.model/dist/model.json",
-      "ui": "@platforma-open/milaboratories.clone-browser.ui/dist"
+      "workflow": "@platforma-open/milaboratories.clonotype-browser.workflow/dist/tengo/tpl/main.plj.gz",
+      "model": "@platforma-open/milaboratories.clonotype-browser.model/dist/model.json",
+      "ui": "@platforma-open/milaboratories.clonotype-browser.ui/dist"
     },
     "meta": {
-      "title": "Clone Browser",
+      "title": "Clonotype Browser",
       "logo": "file:logos/block-logo.png",
-      "url": "https://github.com/milaboratory/block-mixcr-clonotyping",
-      "docs": "https://github.com/milaboratory/block-mixcr-clonotyping/docs",
+      "url": "https://github.com/platforma-open/clonotype-browser",
+      "docs": "https://github.com/platforma-open/clonotype-browser/docs",
       "support": "mailto:support@milaboratories.com",
-      "description": "Browse clones from clonotyping blocks",
+      "description": "Browse clonotypes from clonotyping blocks",
       "longDescription": "file:./docs/description.md",
       "changelog": "file:CHANGELOG.md",
       "tags": [],

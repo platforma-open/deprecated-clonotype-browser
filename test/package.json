@@ -1,5 +1,5 @@
 {
-  "name": "@platforma-open/milaboratories.clone-browser.test",
+  "name": "@platforma-open/milaboratories.clonotype-browser.test",
   "private": true,
   "version": "1.0.0",
   "description": "Block tests",
@@ -10,7 +10,7 @@
   "files": [],
   "keywords": [],
   "dependencies": {
-    "this-block": "workspace:@platforma-open/milaboratories.clone-browser@*",
+    "this-block": "workspace:@platforma-open/milaboratories.clonotype-browser@*",
     "@platforma-open/milaboratories.samples-and-data.model": "catalog:",
     "@platforma-open/milaboratories.samples-and-data": "catalog:",
     "@platforma-open/milaboratories.mixcr-clonotyping.model": "catalog:",
