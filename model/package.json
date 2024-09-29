@@ -1,5 +1,5 @@
 {
-  "name": "@milaboratory/milaboratories.clone-browser.model",
+  "name": "@platforma-open/milaboratories.clone-browser.model",
   "version": "1.0.0",
   "description": "Block model",
   "type": "module",
@@ -10,11 +10,11 @@
     "build": "tsup && vite build && block-tools build-model"
   },
   "dependencies": {
-    "@milaboratory/sdk-ui": "catalog:",
+    "@platforma-sdk/model": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@milaboratory/pl-block-tools": "catalog:",
+    "@platforma-sdk/block-tools": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "tsup": "catalog:"

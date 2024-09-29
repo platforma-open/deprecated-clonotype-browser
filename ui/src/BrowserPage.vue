@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { platforma } from '@milaboratory/milaboratories.clone-browser.model';
+import { platforma } from '@platforma-open/milaboratories.clone-browser.model';
 import { useApp } from './app';
-import { PlDropdown, PlTextArea } from '@milaboratory/platforma-uikit';
+import { PlDropdown, PlTextArea } from '@milaboratories/uikit';
 import { computed, ref, watch } from 'vue';
 import { asyncComputed, useTimeoutPoll } from '@vueuse/core';
-import { AnyLogHandle } from '@milaboratory/sdk-ui';
-import { PlAgDataTable, PlDataTableSettings } from '@milaboratory/sdk-vue';
+import { AnyLogHandle } from '@platforma-sdk/model';
+import { PlAgDataTable, PlDataTableSettings } from '@platforma-sdk/ui-vue';
 
 const app = useApp();
 
@@ -19,7 +19,7 @@ const inputOptions = computed(() =>
 const uiState = app.createUiModel({}, () => ({}))
 
 const tableSettings = computed<PlDataTableSettings>(() => ({
-  sourceType: "pframe",
+  sourceType: "ptable",
 
   pTable: app.outputs.table,
 

@@ -13,7 +13,7 @@ import {
   isPColumn,
   isPColumnSpec,
   type InferOutputsType
-} from '@milaboratory/sdk-ui';
+} from '@platforma-sdk/model';
 
 function getClonotypeColumnBlockId(spec: PObjectSpec): string | undefined {
   if (!isPColumnSpec(spec)) return undefined;

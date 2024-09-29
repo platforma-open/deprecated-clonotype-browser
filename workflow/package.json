@@ -1,5 +1,5 @@
 {
-  "name": "@milaboratory/milaboratories.clone-browser.workflow",
+  "name": "@platforma-open/milaboratories.clone-browser.workflow",
   "version": "1.0.0",
   "type": "module",
   "description": "Tengo-based template",
@@ -11,8 +11,8 @@
     "format": "/usr/bin/env emacs --script ./format.el"
   },
   "devDependencies": {
-    "@milaboratory/tengo-template-builder": "catalog:",
-    "@milaboratory/tengo-sdk": "catalog:",
-    "@milaboratory/sdk-test": "catalog:"
+    "@platforma-sdk/tengo-builder": "catalog:",
+    "@platforma-sdk/workflow-tengo": "catalog:",
+    "@platforma-sdk/test": "catalog:"
   }
 }

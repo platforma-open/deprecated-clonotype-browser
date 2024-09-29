@@ -1,9 +1,9 @@
 ---
-'@milaboratory/milaboratories.clone-browser': patch
-'@milaboratory/milaboratories.clone-browser.model': patch
-'@milaboratory/milaboratories.clone-browser.test': patch
-'@milaboratory/milaboratories.clone-browser.ui': patch
-'@milaboratory/milaboratories.clone-browser.workflow': patch
+'@platforma-open/milaboratories.clone-browser': patch
+'@platforma-open/milaboratories.clone-browser.model': patch
+'@platforma-open/milaboratories.clone-browser.test': patch
+'@platforma-open/milaboratories.clone-browser.ui': patch
+'@platforma-open/milaboratories.clone-browser.workflow': patch
 ---
 
 initial commit

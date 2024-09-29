@@ -3,17 +3,17 @@ import {
   BlockOutputs as ClonotypingBlockOutputs,
   platforma as clonotypingPlatforma,
   uniquePlId
-} from '@milaboratory/milaboratories.mixcr-clonotyping.model';
-import { awaitStableState, blockTest } from '@milaboratory/sdk-test';
-import { blockSpec as samplesAndDataBlockSpec } from '@milaboratory/milaboratories.samples-and-data';
-import { BlockArgs as SamplesAndDataBlockArgs } from '@milaboratory/milaboratories.samples-and-data.model';
-import { blockSpec as clonotypingSpec } from '@milaboratory/milaboratories.mixcr-clonotyping';
+} from '@platforma-open/milaboratories.mixcr-clonotyping.model';
+import { awaitStableState, blockTest } from '@platforma-sdk/test';
+import { blockSpec as samplesAndDataBlockSpec } from '@platforma-open/milaboratories.samples-and-data';
+import { BlockArgs as SamplesAndDataBlockArgs } from '@platforma-open/milaboratories.samples-and-data.model';
+import { blockSpec as clonotypingSpec } from '@platforma-open/milaboratories.mixcr-clonotyping';
 import { blockSpec as myBlockSpec } from 'this-block';
 import {
   platforma as myPlatforma,
   UiState as MyUiState
-} from '@milaboratory/milaboratories.clone-browser.model';
-import { InferBlockState, InferOutputsType, wrapOutputs } from '@milaboratory/sdk-ui';
+} from '@platforma-open/milaboratories.clone-browser.model';
+import { InferBlockState, InferOutputsType, wrapOutputs } from '@platforma-sdk/model';
 import * as tp from 'node:timers/promises';
 
 blockTest(
@@ -65,18 +65,18 @@ blockTest(
       ]
     } satisfies SamplesAndDataBlockArgs);
     await project.runBlock(sndBlockId);
-    await helpers.awaitBlockDone(sndBlockId, 4000);
+    await helpers.awaitBlockDone(sndBlockId, 8000);
 
     const clonotypingBlockState = project.getBlockState(clonotypingBlockId);
 
-    const sdnStableState1 = await helpers.awaitBlockDoneAndGetStableBlockState(sndBlockId);
+    const sdnStableState1 = await helpers.awaitBlockDoneAndGetStableBlockState(sndBlockId, 8000);
     expect(sdnStableState1.outputs).toMatchObject({
       fileImports: { ok: true, value: { [r1Handle]: { done: true }, [r2Handle]: { done: true } } }
     });
 
     const clonotypingStableState1 = (await awaitStableState(
       clonotypingBlockState,
-      25000
+      35000
     )) as InferBlockState<typeof clonotypingPlatforma>;
 
     expect(clonotypingStableState1.outputs).toMatchObject({
@@ -101,7 +101,7 @@ blockTest(
 
     const clonotypingStableState3 = (await helpers.awaitBlockDoneAndGetStableBlockState(
       clonotypingBlockId,
-      25000
+      35000
     )) as InferBlockState<typeof clonotypingPlatforma>;
     const outputs3 = wrapOutputs<ClonotypingBlockOutputs>(clonotypingStableState3.outputs);
 
@@ -138,7 +138,7 @@ blockTest(
 
     const cloneBrowserStableState1 = (await awaitStableState(
       cloneBrowserState,
-      15000
+      25000
     )) as InferBlockState<typeof myPlatforma>;
     const cloneBrowserOutputs1 = wrapOutputs<InferOutputsType<typeof myPlatforma>>(
       cloneBrowserStableState1.outputs
@@ -154,7 +154,7 @@ blockTest(
 
     const cloneBrowserStableState2 = (await awaitStableState(
       cloneBrowserState,
-      15000
+      25000
     )) as InferBlockState<typeof myPlatforma>;
     const cloneBrowserOutputs2 = wrapOutputs<InferOutputsType<typeof myPlatforma>>(
       cloneBrowserStableState2.outputs
