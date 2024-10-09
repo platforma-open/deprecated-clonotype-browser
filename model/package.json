@@ -10,8 +10,7 @@
     "build": "tsup && vite build && block-tools build-model"
   },
   "dependencies": {
-    "@platforma-sdk/model": "catalog:",
-    "zod": "catalog:"
+    "@platforma-sdk/model": "catalog:"
   },
   "devDependencies": {
     "@platforma-sdk/block-tools": "catalog:",

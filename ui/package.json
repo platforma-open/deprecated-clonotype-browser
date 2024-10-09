@@ -2,31 +2,27 @@
   "name": "@platforma-open/milaboratories.clonotype-browser.ui",
   "version": "1.1.0",
   "type": "module",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "dev": "vite",
     "watch": "vue-tsc && vite build --watch",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@ag-grid-community/client-side-row-model": "catalog:",
-    "@ag-grid-community/core": "catalog:",
-    "@ag-grid-community/styles": "catalog:",
-    "@ag-grid-community/vue3": "catalog:",
-    "@milaboratories/helpers": "catalog:",
+  "devDependencies": {
     "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
     "@milaboratories/uikit": "catalog:",
     "@platforma-sdk/model": "catalog:",
     "@platforma-sdk/ui-vue": "catalog:",
-    "utility-types": "catalog:",
-    "vue": "catalog:",
-    "@vueuse/core": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
+    "@types/lodash": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
+    "@vueuse/core": "catalog:",
+    "lodash": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
+    "vue": "catalog:",
     "vue-tsc": "catalog:"
   }
 }
