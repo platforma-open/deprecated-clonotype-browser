@@ -1,5 +1,18 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.2.0
+
+### Minor Changes
+
+- Fixed table display
+
+### Patch Changes
+
+- Updated dependencies
+  - @platforma-open/milaboratories.clonotype-browser.workflow@1.2.0
+  - @platforma-open/milaboratories.clonotype-browser.model@1.2.0
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

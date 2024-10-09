@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.2.0
+
+### Minor Changes
+
+- Fixed table display
+
 ## 1.1.0
 
 ### Minor Changes

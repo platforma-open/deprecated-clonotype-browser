@@ -10,7 +10,7 @@ import { BlockArgs as SamplesAndDataBlockArgs } from '@platforma-open/milaborato
 import { blockSpec as clonotypingSpec } from '@platforma-open/milaboratories.mixcr-clonotyping';
 import { blockSpec as myBlockSpec } from 'this-block';
 import {
-  platforma as myPlatforma,
+  model as myPlatforma,
   UiState as MyUiState
 } from '@platforma-open/milaboratories.clonotype-browser.model';
 import { InferBlockState, InferOutputsType, wrapOutputs } from '@platforma-sdk/model';
@@ -144,12 +144,26 @@ blockTest(
       cloneBrowserStableState1.outputs
     );
 
-    expect(cloneBrowserOutputs1.table).toBeUndefined();
+    expect(cloneBrowserOutputs1.pTable).toBeUndefined();
     expect(cloneBrowserOutputs1.inputOptions).toHaveLength(1);
-    expect(cloneBrowserOutputs1.inputOptions[0]).toMatchObject({ blockId: clonotypingBlockId });
+    expect(cloneBrowserOutputs1.inputOptions?.[0]).toMatchObject({ blockId: clonotypingBlockId });
 
     await project.setUiState(cloneBrowserBlockId, {
-      inputBlockId: clonotypingBlockId
+      inputBlockId: clonotypingBlockId,
+      tableState: {
+        gridState: {},
+        pTableParams: {
+          join: {
+            type: 'full',
+            entries: clonesPfColumnList.map((column) => ({
+              type: 'column',
+              column
+            }))
+          },
+          sorting: [],
+          filters: []
+        }
+      }
     } satisfies MyUiState);
 
     const cloneBrowserStableState2 = (await awaitStableState(
@@ -159,10 +173,10 @@ blockTest(
     const cloneBrowserOutputs2 = wrapOutputs<InferOutputsType<typeof myPlatforma>>(
       cloneBrowserStableState2.outputs
     );
-    const tableHandle = cloneBrowserOutputs2.table!;
-    expect(cloneBrowserOutputs2.table).toBeDefined();
+    const tableHandle = cloneBrowserOutputs2.pTable;
+    expect(cloneBrowserOutputs2.pTable).toBeDefined();
 
-    const spec = await ml.driverKit.pFrameDriver.getSpec(tableHandle);
+    const spec = await ml.driverKit.pFrameDriver.getSpec(tableHandle!);
     console.dir(spec, { depth: 5 });
   }
 );

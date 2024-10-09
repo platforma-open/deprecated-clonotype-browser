@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser.model",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Block model",
   "type": "module",
   "main": "dist/index.cjs",
@@ -10,8 +10,7 @@
     "build": "tsup && vite build && block-tools build-model"
   },
   "dependencies": {
-    "@platforma-sdk/model": "catalog:",
-    "zod": "catalog:"
+    "@platforma-sdk/model": "catalog:"
   },
   "devDependencies": {
     "@platforma-sdk/block-tools": "catalog:",
