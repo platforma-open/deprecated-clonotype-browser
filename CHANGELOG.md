@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.2.2
+
+### Patch Changes
+
+- 7c6b0a1: chore: update deps
+
 ## 1.2.1
 
 ### Patch Changes
