@@ -2,7 +2,7 @@
 import { useApp } from './app';
 import { PlDropdown } from '@milaboratories/uikit';
 import { computed } from 'vue';
-import { PlAgDataTable, PlDataTableSettings } from '@platforma-sdk/ui-vue';
+import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlDataTableSettings } from '@platforma-sdk/ui-vue';
 import {
   model,
   type UiState,
@@ -23,6 +23,7 @@ import {
 const app = useApp();
 
 const uiState = app.createUiModel<UiState>(undefined, () => ({
+  settingsOpen: true,
   tableState: {
     gridState: {},
     pTableParams: {
@@ -33,7 +34,7 @@ const uiState = app.createUiModel<UiState>(undefined, () => ({
 }));
 
 const pfDriver = model.pFrameDriver;
-const pFrame = computed(() => app.outputValues.pFrame);
+const pFrame = computed(() => app.model.outputs.pFrame);
 
 const inputOptions = computed(
   () =>
@@ -118,53 +119,31 @@ const tableSettings = computed(
   () =>
     ({
       sourceType: 'pframe',
-      pFrame: app.outputs.pFrame,
+      pFrame: app.model.outputs.pFrame,
       join: join.value,
       sheetAxes: sheetAxes.value,
-      pTable: app.outputs.pTable
+      pTable: app.model.outputs.pTable,
     } satisfies PlDataTableSettings)
 );
 </script>
 
 <template>
-  <div class="box">
-    <div class="container">
-      <form class="settings-form">
-        <PlDropdown
-          :options="inputOptions"
-          v-model="inputBlockId"
-          label="Select dataset"
-          clearable
-        />
-      </form>
-      <div class="table-container">
-        <PlAgDataTable v-model="tableState" :settings="tableSettings" />
-      </div>
+  <PlBlockPage>
+    <template #title>Clonotype Browser</template>
+    <template #append>
+      <PlBtnGhost :icon="'settings-2'" @click.stop="() => uiState.model.settingsOpen = true">Settings</PlBtnGhost>
+    </template>
+    <div style="flex: 1">
+      <PlAgDataTable v-model="tableState" :settings="tableSettings" />
     </div>
-  </div>
+  </PlBlockPage>
+  <PlSlideModal v-model="uiState.model.settingsOpen" :shadow="true" :close-on-outside-click="true">
+    <template #title>Settings</template>
+    <PlDropdown
+      :options="inputOptions"
+      v-model="inputBlockId"
+      label="Select dataset"
+      clearable
+    />
+  </PlSlideModal>
 </template>
-
-<style lang="css" scoped>
-.box {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  gap: 12px;
-  margin: 12px;
-  min-width: 760px;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 12px;
-}
-.settings-form {
-  margin-top: 6px;
-  z-index: 1;
-}
-.table-container {
-  flex: 1;
-  z-index: 0;
-}
-</style>
