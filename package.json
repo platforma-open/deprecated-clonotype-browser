@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
     "build": "rm -rf ./block-pack && block-tools pack",
@@ -46,24 +46,7 @@
   "//": {
     "pnpm": {
       "overrides": {
-        "@milaboratory/pl-middle-layer": "file:/Volumes/Data/Projects/MiLaboratory/platforma/ts-pl-middle-layer/milaboratory-pl-middle-layer-1.9.30.tgz"
-      }
-    },
-    "pnpm1": {
-      "overrides": {
-        "@milaboratory/pl-middle-layer": "1.9.30",
-        "@platforma-sdk/workflow-tengo": "file:/Volumes/Data/Projects/MiLaboratory/blocks-beta/tengo-sdk/milaboratory-tengo-sdk-1.0.14.tgz",
-        "@platforma-sdk/tengo-builder": "file:/Volumes/Data/Projects/MiLaboratory/blocks-beta/tengo-template-builder"
-      }
-    },
-    "pnpm2": {
-      "overrides": {
-        "@platforma-sdk/workflow-tengo": "file:/Volumes/Data/Projects/MiLaboratory/blocks-beta/tengo-sdk",
-        "@milaboratory/pl-middle-layer": "file:/Volumes/Data/Projects/MiLaboratory/platforma/ts-pl-middle-layer",
-        "@platforma-sdk/model": "file:/Volumes/Data/Projects/MiLaboratory/platforma/ts-sdk-ui",
-        "@platforma-sdk/test": "file:/Volumes/Data/Projects/MiLaboratory/platforma/ts-sdk-test",
-        "@platforma-sdk/ui-vue": "file:/Volumes/Data/Projects/MiLaboratory/platforma/sdk-vue",
-        "@platforma-open/milaboratories.samples-and-data.workflow": "file:/Volumes/Data/Projects/MiLaboratory/blocks-beta/block-samples-and-data/workflow"
+        "@platforma-sdk/ui-vue": "/path/to/platforma/sdk/ui-vue/package.tgz"
       }
     }
   },

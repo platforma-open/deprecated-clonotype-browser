@@ -22,6 +22,7 @@ export function getClonotypeColumnBlockId(spec: PColumnSpec): string | undefined
 }
 
 export type UiState = {
+  settingsOpen: boolean;
   inputBlockId?: string;
   tableState: PlDataTableState;
 };
