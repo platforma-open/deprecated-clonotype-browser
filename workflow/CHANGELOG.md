@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.3
+
+### Patch Changes
+
+- sdk/ui-vue version bump
+
 ## 1.2.2
 
 ### Patch Changes
