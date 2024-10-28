@@ -1,5 +1,15 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.2.4
+
+### Patch Changes
+
+- sdk/ui-vue version bump
+- Updated dependencies
+  - @platforma-open/milaboratories.clonotype-browser.model@1.2.3
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.2.3
+  - @platforma-open/milaboratories.clonotype-browser.workflow@1.2.3
+
 ## 1.2.3
 
 ### Patch Changes
