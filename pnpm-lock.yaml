@@ -37,8 +37,8 @@ catalogs:
       specifier: ^1.7.23
       version: 1.7.23
     '@platforma-sdk/ui-vue':
-      specifier: ^1.7.25
-      version: 1.7.25
+      specifier: ^1.7.26
+      version: 1.7.26
     '@platforma-sdk/workflow-tengo':
       specifier: ^1.7.0
       version: 1.7.0
@@ -157,7 +157,7 @@ importers:
         version: 1.7.20
       '@platforma-sdk/ui-vue':
         specifier: 'catalog:'
-        version: 1.7.25(typescript@5.6.3)
+        version: 1.7.26(typescript@5.6.3)
       '@types/lodash':
         specifier: 'catalog:'
         version: 4.17.12
@@ -993,6 +993,9 @@ packages:
 
   '@platforma-sdk/ui-vue@1.7.25':
     resolution: {integrity: sha512-HZ3rm7cNQ//q0Uwn7xMX5g4V0npeRJ8NV58X15wvsu7TCdpzQetPMzkgHgIvFA8vhF2VFMjwofjlqquko+j9sQ==}
+
+  '@platforma-sdk/ui-vue@1.7.26':
+    resolution: {integrity: sha512-eNAGY0bbp6kgSjfjTqDstLuA3RcSkuwxWyQC40WNSlg8eBZXke3KvHc0ibNQuq4ErPMScg3eLIK8WX+ExKJxLw==}
 
   '@platforma-sdk/workflow-tengo@1.7.0':
     resolution: {integrity: sha512-1ecUeFWRrrWsVNBk65QTNe3JCWWCEeVtxWLQo53SXRXuP7rqfhyQhAhs/J7l2CAEaOm2r87ifWrzWsbpKz10qg==}
@@ -4407,6 +4410,29 @@ snapshots:
       - terser
 
   '@platforma-sdk/ui-vue@1.7.25(typescript@5.6.3)':
+    dependencies:
+      '@ag-grid-community/client-side-row-model': 32.3.0
+      '@ag-grid-community/core': 32.3.0
+      '@ag-grid-community/csv-export': 32.3.0
+      '@ag-grid-community/infinite-row-model': 32.3.0
+      '@ag-grid-community/styles': 32.3.0
+      '@ag-grid-community/vue3': 32.3.0(typescript@5.6.3)
+      '@ag-grid-enterprise/clipboard': 32.3.0
+      '@ag-grid-enterprise/core': 32.3.0
+      '@ag-grid-enterprise/excel-export': 32.3.0
+      '@ag-grid-enterprise/menu': 32.3.0
+      '@ag-grid-enterprise/range-selection': 32.3.0
+      '@ag-grid-enterprise/rich-select': 32.3.0
+      '@ag-grid-enterprise/server-side-row-model': 32.3.0
+      '@milaboratories/uikit': 1.2.29(typescript@5.6.3)
+      '@platforma-sdk/model': 1.7.20
+      canonicalize: 2.0.0
+      lru-cache: 11.0.1
+      vue: 3.5.12(typescript@5.6.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@platforma-sdk/ui-vue@1.7.26(typescript@5.6.3)':
     dependencies:
       '@ag-grid-community/client-side-row-model': 32.3.0
       '@ag-grid-community/core': 32.3.0
