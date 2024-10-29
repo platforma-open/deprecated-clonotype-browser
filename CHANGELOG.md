@@ -1,5 +1,15 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.2.5
+
+### Patch Changes
+
+- PlAgDataTable fix
+- Updated dependencies
+  - @platforma-open/milaboratories.clonotype-browser.model@1.2.4
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.2.4
+  - @platforma-open/milaboratories.clonotype-browser.workflow@1.2.4
+
 ## 1.2.4
 
 ### Patch Changes
