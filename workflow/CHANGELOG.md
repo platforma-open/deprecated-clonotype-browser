@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.5
+
+### Patch Changes
+
+- PlAgDataTable maintain order of columns after applying sorting"
+
 ## 1.2.4
 
 ### Patch Changes
