@@ -100,10 +100,14 @@ const sheetAxes = computed(() => {
   const columns = getColumnsFromJoin(joinValue);
   const axes = getAxesId(columns[0].spec.axesSpec).map(lodash.cloneDeep);
 
-  return [
-    axes.find((axis) => axis.name === 'pl7.app/sampleId')!,
-    axes.find((axis) => axis.name === 'pl7.app/vdj/chain')!
+  const ret = [
+    axes.find((axis) => axis.name === 'pl7.app/sampleId')!
   ] satisfies AxesId;
+
+  const chainAxis = axes.find((axis) => axis.name === 'pl7.app/vdj/chain')
+  if (chainAxis) ret.push(chainAxis)
+
+  return ret;
 });
 
 watch(sheetAxes, sa => console.dir(sa, { depth: 5 }), { immediate: true })

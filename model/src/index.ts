@@ -23,6 +23,13 @@ export function getClonotypeColumnBlockId(spec: PColumnSpec): string | undefined
       spec.axesSpec[3].name === 'pl7.app/vdj/tagValueCELL')
   )
     return spec.axesSpec[2]?.domain?.['pl7.app/blockId'];
+  if (
+    spec.axesSpec.length === 3 &&
+    spec.axesSpec[0].name === 'pl7.app/sampleId' &&
+    spec.axesSpec[1].name === 'pl7.app/vdj/cloneId' &&
+    spec.axesSpec[2].name === 'pl7.app/vdj/tagValueCELL'
+  )
+    return spec.axesSpec[1]?.domain?.['pl7.app/blockId'];
   return undefined;
 }
 
@@ -35,11 +42,11 @@ export type UiState = {
 export const model = BlockModel.create<{}, UiState>('Heavy')
   .initialArgs({})
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
-  // .output('allSpecs', (ctx) => {
-  //   const collection = ctx.resultPool.getSpecs();
-  //   if (collection === undefined || !collection.isComplete) return undefined;
-  //   return collection;
-  // })
+  .output('allSpecs', (ctx) => {
+    const collection = ctx.resultPool.getSpecs();
+    if (collection === undefined || !collection.isComplete) return undefined;
+    return collection;
+  })
   .output('inputOptions', (ctx) => {
     const collection = ctx.resultPool.getSpecs();
     if (collection === undefined || !collection.isComplete) return undefined;
