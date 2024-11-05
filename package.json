@@ -46,11 +46,10 @@
   "//": {
     "pnpm": {
       "overrides": {
+        "@platforma-sdk/model": "/path/to/platforma/sdk/model/package.tgz",
         "@platforma-sdk/ui-vue": "/path/to/platforma/sdk/ui-vue/package.tgz"
       }
     }
   },
-  "pnpm": {
-    "overrides": {}
-  }
+  "pnpm": {}
 }

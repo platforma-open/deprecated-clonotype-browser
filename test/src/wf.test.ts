@@ -154,6 +154,8 @@ blockTest(
     await project.setUiState(cloneBrowserBlockId, {
       inputBlockId: clonotypingBlockId,
       settingsOpen: true,
+      filtersOpen: false,
+      filterModel: {},
       tableState: {
         gridState: {},
         pTableParams: {

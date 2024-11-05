@@ -3,6 +3,7 @@ import {
   type InferOutputsType,
   type InferHrefType,
   type PlDataTableState,
+  type PlTableFiltersModel,
   type PColumnSpec,
   type ValueType,
   isPColumn,
@@ -35,12 +36,26 @@ export function getClonotypeColumnBlockId(spec: PColumnSpec): string | undefined
 
 export type UiState = {
   settingsOpen: boolean;
+  filtersOpen: boolean;
+  filterModel: PlTableFiltersModel;
   inputBlockId?: string;
   tableState: PlDataTableState;
 };
 
-export const model = BlockModel.create<{}, UiState>('Heavy')
-  .initialArgs({})
+export const model = BlockModel.create('Heavy')
+  .withArgs({})
+  .withUiState<UiState>({
+    settingsOpen: true,
+    filtersOpen: false,
+    filterModel: {},
+    tableState: {
+      gridState: {},
+      pTableParams: {
+        sorting: [],
+        filters: []
+      }
+    }
+  })
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
   .output('inputOptions', (ctx) => {
     const collection = ctx.resultPool.getSpecs();
@@ -87,19 +102,22 @@ export const model = BlockModel.create<{}, UiState>('Heavy')
     const columns = collection.entries.map(({ obj }) => obj).filter(isPColumn);
     if (columns.length === 0) return undefined;
 
-    try {
-      return ctx.createPTable({
-        src: mapJoinEntry(join, (idAndSpec) => {
-          const column = columns.find((column) => column.id === idAndSpec.columnId);
-          if (!column) throw Error(`column '${column}' not ready`);
-          return column;
-        }),
-        filters: ctx.uiState.tableState.pTableParams?.filters ?? [],
-        sorting: ctx.uiState.tableState.pTableParams?.sorting ?? []
-      });
-    } catch (err) {
-      return undefined;
-    }
+    let columnMissing = false;
+    const src = mapJoinEntry(join, (idAndSpec) => {
+      const column = columns.find((it) => it.id === idAndSpec.columnId);
+      if (!column) columnMissing = true;
+      return column!;
+    });
+    if (columnMissing) return undefined;
+
+    return ctx.createPTable({
+      src,
+      filters: [
+        ...(ctx.uiState.tableState.pTableParams?.filters ?? []),
+        ...(ctx.uiState.filterModel.filters ?? [])
+      ],
+      sorting: ctx.uiState.tableState.pTableParams?.sorting ?? []
+    });
   })
   .done();
 

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useApp } from './app';
+import { computed, ref } from 'vue';
+import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlTableFilters, type PlDataTableSettings, PlMaskIcon24, PlDropdown } from '@platforma-sdk/ui-vue';
 import {
   getClonotypeColumnBlockId,
   model,
@@ -7,22 +10,22 @@ import {
 import {
   getAxesId,
   mapJoinEntry,
+  PTableColumnSpec,
   type AxesId,
   type ColumnJoinEntry,
   type FullJoin,
   type JoinEntry,
   type PColumnIdAndSpec
 } from '@platforma-sdk/model';
-import { PlAgDataTable, PlBlockPage, PlBtnGhost, PlDataTableSettings, PlDropdown, PlMaskIcon24, PlSlideModal } from '@platforma-sdk/ui-vue';
 import { computedAsync } from '@vueuse/core';
 import * as lodash from 'lodash';
-import { computed } from 'vue';
-import { useApp } from './app';
 
 const app = useApp();
 
 const uiState = app.createUiModel<UiState>(undefined, () => ({
   settingsOpen: true,
+  filtersOpen: false,
+  filterModel: {},
   tableState: {
     gridState: {},
     pTableParams: {
@@ -30,7 +33,7 @@ const uiState = app.createUiModel<UiState>(undefined, () => ({
       filters: []
     }
   }
-}));
+} satisfies UiState));
 
 const pfDriver = model.pFrameDriver;
 const pFrame = computed(() => app.model.outputs.pFrame);
@@ -128,22 +131,34 @@ const tableSettings = computed(
     pTable: app.model.outputs.pTable,
   } satisfies PlDataTableSettings)
 );
+const columns = ref<PTableColumnSpec[]>([]);
 </script>
 
 <template>
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
-      <PlBtnGhost @click.stop="() => uiState.model.settingsOpen = true">Settings
+      <PlBtnGhost @click.stop="() => uiState.model.filtersOpen = true">
+        Filters
+        <template #append>
+          <PlMaskIcon24 name="filter"/>
+        </template>
+      </PlBtnGhost>
+      <PlBtnGhost @click.stop="() => uiState.model.settingsOpen = true">
+        Settings
         <template #append>
           <PlMaskIcon24 name="settings" />
         </template>
       </PlBtnGhost>
     </template>
     <div style="flex: 1">
-      <PlAgDataTable v-model="tableState" :settings="tableSettings" />
+      <PlAgDataTable v-model="tableState" :settings="tableSettings" @columns-changed="(newColumns) => columns = newColumns" />
     </div>
   </PlBlockPage>
+  <PlSlideModal v-model="uiState.model.filtersOpen" :shadow="true" :close-on-outside-click="true">
+    <template #title>Filters</template>
+    <PlTableFilters v-model="uiState.model.filterModel" :columns="columns" />
+  </PlSlideModal>
   <PlSlideModal v-model="uiState.model.settingsOpen" :shadow="true" :close-on-outside-click="true">
     <template #title>Settings</template>
     <PlDropdown :options="inputOptions" v-model="inputBlockId" label="Select dataset" clearable />
