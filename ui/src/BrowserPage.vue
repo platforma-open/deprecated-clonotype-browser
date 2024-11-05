@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useApp } from './app';
-import { PlDropdown } from '@milaboratories/uikit';
-import { computed } from 'vue';
-import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlDataTableSettings } from '@platforma-sdk/ui-vue';
+import { computed, watch } from 'vue';
+import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlDataTableSettings, PlDropdown } from '@platforma-sdk/ui-vue';
 import {
   model,
   type UiState,
@@ -77,10 +76,10 @@ const join = computedAsync(async () => {
     type: 'full',
     entries: clonotypeColumns.map(
       (column) =>
-        ({
-          type: 'column',
-          column
-        } satisfies ColumnJoinEntry<PColumnIdAndSpec>)
+      ({
+        type: 'column',
+        column
+      } satisfies ColumnJoinEntry<PColumnIdAndSpec>)
     )
   } satisfies FullJoin<PColumnIdAndSpec>;
 });
@@ -101,11 +100,17 @@ const sheetAxes = computed(() => {
   const columns = getColumnsFromJoin(joinValue);
   const axes = getAxesId(columns[0].spec.axesSpec).map(lodash.cloneDeep);
 
-  return [
-    axes.find((axis) => axis.name === 'pl7.app/sampleId')!,
-    axes.find((axis) => axis.name === 'pl7.app/vdj/chain')!
+  const ret = [
+    axes.find((axis) => axis.name === 'pl7.app/sampleId')!
   ] satisfies AxesId;
+
+  const chainAxis = axes.find((axis) => axis.name === 'pl7.app/vdj/chain')
+  if (chainAxis) ret.push(chainAxis)
+
+  return ret;
 });
+
+watch(sheetAxes, sa => console.dir(sa, { depth: 5 }), { immediate: true })
 
 const tableState = computed({
   get: () => uiState.model.tableState,
@@ -117,13 +122,13 @@ const tableState = computed({
 });
 const tableSettings = computed(
   () =>
-    ({
-      sourceType: 'pframe',
-      pFrame: app.model.outputs.pFrame,
-      join: join.value,
-      sheetAxes: sheetAxes.value,
-      pTable: app.model.outputs.pTable,
-    } satisfies PlDataTableSettings)
+  ({
+    sourceType: 'pframe',
+    pFrame: app.model.outputs.pFrame,
+    join: join.value,
+    sheetAxes: sheetAxes.value,
+    pTable: app.model.outputs.pTable,
+  } satisfies PlDataTableSettings)
 );
 </script>
 
@@ -139,11 +144,6 @@ const tableSettings = computed(
   </PlBlockPage>
   <PlSlideModal v-model="uiState.model.settingsOpen" :shadow="true" :close-on-outside-click="true">
     <template #title>Settings</template>
-    <PlDropdown
-      :options="inputOptions"
-      v-model="inputBlockId"
-      label="Select dataset"
-      clearable
-    />
+    <PlDropdown :options="inputOptions" v-model="inputBlockId" label="Select dataset" clearable />
   </PlSlideModal>
 </template>
