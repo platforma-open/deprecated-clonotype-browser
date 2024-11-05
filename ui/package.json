@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
-    "@milaboratories/uikit": "catalog:",
     "@platforma-sdk/model": "catalog:",
     "@platforma-sdk/ui-vue": "catalog:",
     "@types/lodash": "catalog:",
