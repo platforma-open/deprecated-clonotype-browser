@@ -42,11 +42,6 @@ export type UiState = {
 export const model = BlockModel.create<{}, UiState>('Heavy')
   .initialArgs({})
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
-  .output('allSpecs', (ctx) => {
-    const collection = ctx.resultPool.getSpecs();
-    if (collection === undefined || !collection.isComplete) return undefined;
-    return collection;
-  })
   .output('inputOptions', (ctx) => {
     const collection = ctx.resultPool.getSpecs();
     if (collection === undefined || !collection.isComplete) return undefined;

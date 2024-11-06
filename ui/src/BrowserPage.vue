@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useApp } from './app';
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlDataTableSettings, PlDropdown } from '@platforma-sdk/ui-vue';
 import {
   model,
@@ -110,8 +110,6 @@ const sheetAxes = computed(() => {
   return ret;
 });
 
-watch(sheetAxes, sa => console.dir(sa, { depth: 5 }), { immediate: true })
-
 const tableState = computed({
   get: () => uiState.model.tableState,
   set: (tableState) => {
@@ -136,7 +134,9 @@ const tableSettings = computed(
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
-      <PlBtnGhost :icon="'settings-2'" @click.stop="() => uiState.model.settingsOpen = true">Settings</PlBtnGhost>
+      <PlBtnGhost :icon="'settings-2'" @click.stop="() => uiState.model.settingsOpen = true">
+        Settings
+      </PlBtnGhost>
     </template>
     <div style="flex: 1">
       <PlAgDataTable v-model="tableState" :settings="tableSettings" />
