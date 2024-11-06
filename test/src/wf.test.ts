@@ -94,7 +94,10 @@ blockTest(
 
     await project.setBlockArgs(clonotypingBlockId, {
       input: clonotypingStableState1Outputs.inputOptions[0].ref,
-      preset: 'milab-human-dna-xcr-7genes-multiplex'
+      preset: {
+        type: 'name',
+        name: 'milab-human-dna-xcr-7genes-multiplex'
+      }
     } satisfies ClonotypingBlockArgs);
 
     await project.runBlock(clonotypingBlockId);
@@ -150,6 +153,7 @@ blockTest(
 
     await project.setUiState(cloneBrowserBlockId, {
       inputBlockId: clonotypingBlockId,
+      settingsOpen: true,
       tableState: {
         gridState: {},
         pTableParams: {

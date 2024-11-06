@@ -10,9 +10,9 @@ catalog:
   '@platforma-sdk/block-tools': ^2.3.21
   '@platforma-sdk/model': ^1.7.20
   '@platforma-sdk/tengo-builder': ^1.16.1
-  '@platforma-sdk/test': ^1.7.39
-  '@platforma-sdk/ui-vue': ^1.7.41
-  '@platforma-sdk/workflow-tengo': ^1.7.2
+  '@platforma-sdk/test': ^1.7.43
+  '@platforma-sdk/ui-vue': ^1.7.44
+  '@platforma-sdk/workflow-tengo': ^1.7.3
   '@types/lodash': ^4.17.13
   '@vitejs/plugin-vue': ^5.1.4
   '@vueuse/core': ^11.2.0
