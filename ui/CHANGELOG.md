@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.3.0
+
+### Minor Changes
+
+- b1822a1: Support for single-cell clonotyping results
+
 ## 1.2.6
 
 ### Patch Changes
