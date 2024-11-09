@@ -10,9 +10,9 @@ catalog:
   '@platforma-sdk/block-tools': ^2.3.21
   '@platforma-sdk/model': ^1.7.20
   '@platforma-sdk/tengo-builder': ^1.16.1
-  '@platforma-sdk/test': ^1.7.43
-  '@platforma-sdk/ui-vue': ^1.7.44
-  '@platforma-sdk/workflow-tengo': ^1.7.3
+  '@platforma-sdk/test': ^1.7.52
+  '@platforma-sdk/ui-vue': ^1.7.51
+  '@platforma-sdk/workflow-tengo': ^1.7.5
   '@types/lodash': ^4.17.13
   '@vitejs/plugin-vue': ^5.1.4
   '@vueuse/core': ^11.2.0
@@ -28,5 +28,5 @@ catalog:
 
   '@platforma-open/milaboratories.samples-and-data': ^1.6.3
   '@platforma-open/milaboratories.samples-and-data.model': ^1.6.0
-  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.2.7
-  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.1.9
+  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.2.9
+  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.2.1
