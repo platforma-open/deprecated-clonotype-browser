@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import { useApp } from './app';
-import { computed } from 'vue';
-import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlDataTableSettings, PlDropdown } from '@platforma-sdk/ui-vue';
 import {
+  getClonotypeColumnBlockId,
   model,
-  type UiState,
-  getClonotypeColumnBlockId
+  type UiState
 } from '@platforma-open/milaboratories.clonotype-browser.model';
-import * as lodash from 'lodash';
-import { computedAsync } from '@vueuse/core';
 import {
   getAxesId,
   mapJoinEntry,
@@ -18,6 +13,11 @@ import {
   type JoinEntry,
   type PColumnIdAndSpec
 } from '@platforma-sdk/model';
+import { PlAgDataTable, PlBlockPage, PlBtnGhost, PlDataTableSettings, PlDropdown, PlMaskIcon24, PlSlideModal } from '@platforma-sdk/ui-vue';
+import { computedAsync } from '@vueuse/core';
+import * as lodash from 'lodash';
+import { computed } from 'vue';
+import { useApp } from './app';
 
 const app = useApp();
 
@@ -134,8 +134,10 @@ const tableSettings = computed(
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
-      <PlBtnGhost :icon="'settings-2'" @click.stop="() => uiState.model.settingsOpen = true">
-        Settings
+      <PlBtnGhost @click.stop="() => uiState.model.settingsOpen = true">Settings
+        <template #append>
+          <PlMaskIcon24 name="settings" />
+        </template>
       </PlBtnGhost>
     </template>
     <div style="flex: 1">
