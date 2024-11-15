@@ -1,5 +1,12 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.3.1
+
+### Patch Changes
+
+- e3db5a0: Fix for inputOptions
+- 89827a2: SDK upgrade
+
 ## 1.3.0
 
 ### Minor Changes

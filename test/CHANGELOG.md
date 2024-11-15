@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.7
+
+### Patch Changes
+
+- 89827a2: SDK upgrade
+
 ## 1.2.6
 
 ### Patch Changes
