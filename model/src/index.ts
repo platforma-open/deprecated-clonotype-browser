@@ -44,13 +44,13 @@ export const model = BlockModel.create<{}, UiState>('Heavy')
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
   .output('inputOptions', (ctx) => {
     const collection = ctx.resultPool.getSpecs();
-    if (collection === undefined || !collection.isComplete) return undefined;
+    if (collection === undefined) return undefined;
 
     const potentialBlocks = collection.entries
       .map(({ obj }) => obj)
       .filter(isPColumnSpec)
       .map(getClonotypeColumnBlockId)
-      .filter((blockId): blockId is string => !!blockId)
+      .filter((blockId): blockId is string => blockId !== undefined)
       .reduce((potentialBlocks, blockId) => {
         potentialBlocks.add(blockId);
         return potentialBlocks;
