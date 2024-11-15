@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.3.1
+
+### Patch Changes
+
+- 89827a2: SDK upgrade
+
 ## 1.3.0
 
 ### Minor Changes
