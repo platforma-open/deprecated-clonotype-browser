@@ -141,7 +141,7 @@ const columns = ref<PTableColumnSpec[]>([]);
       <PlBtnGhost @click.stop="() => uiState.model.filtersOpen = true">
         Filters
         <template #append>
-          <PlMaskIcon24 name="filter"/>
+          <PlMaskIcon24 :name="(app.model.ui.filterModel.filters ?? []).length > 0 ? 'filter-on' : 'filter'"/>
         </template>
       </PlBtnGhost>
       <PlBtnGhost @click.stop="() => uiState.model.settingsOpen = true">
