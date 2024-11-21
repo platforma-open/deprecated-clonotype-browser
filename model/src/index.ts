@@ -84,6 +84,7 @@ export const model = BlockModel.create('Heavy')
     const columns = collection.entries
       .map(({ obj }) => obj)
       .filter(isPColumn)
+      // Remove this filter in 2025
       .filter((column) => valueTypes.find((valueType) => valueType === column.spec.valueType));
 
     try {
