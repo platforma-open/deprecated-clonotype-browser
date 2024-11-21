@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.3.5
+
+### Patch Changes
+
+- Added ui state upgrader
+
 ## 1.3.4
 
 ### Patch Changes

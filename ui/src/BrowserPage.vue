@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { useApp } from './app';
-import { computed, ref } from 'vue';
-import { PlBlockPage, PlBtnGhost, PlSlideModal, PlAgDataTable, PlTableFilters, type PlDataTableSettings, PlMaskIcon24, PlDropdown } from '@platforma-sdk/ui-vue';
+import { computed, ref, watch } from 'vue';
+import {
+  PlBlockPage,
+  PlBtnGhost,
+  PlSlideModal,
+  PlAgDataTable,
+  PlTableFilters,
+  type PlDataTableSettings,
+  PlMaskIcon24,
+  PlDropdown
+} from '@platforma-sdk/ui-vue';
 import {
   getClonotypeColumnBlockId,
   model,
@@ -34,6 +43,11 @@ const uiState = app.createUiModel<UiState>(undefined, () => ({
     }
   }
 } satisfies UiState));
+
+(() => {
+  if (app.model.ui.filtersOpen === undefined) app.model.ui.filtersOpen = false;
+  if (app.model.ui.filterModel === undefined) app.model.ui.filterModel = {};
+})();
 
 const pfDriver = model.pFrameDriver;
 const pFrame = computed(() => app.model.outputs.pFrame);

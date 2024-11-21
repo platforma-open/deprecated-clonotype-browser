@@ -114,7 +114,7 @@ export const model = BlockModel.create('Heavy')
       src,
       filters: [
         ...(ctx.uiState.tableState.pTableParams?.filters ?? []),
-        ...(ctx.uiState.filterModel.filters ?? [])
+        ...(ctx.uiState.filterModel?.filters ?? [])
       ],
       sorting: ctx.uiState.tableState.pTableParams?.sorting ?? []
     });
