@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.10
+
+### Patch Changes
+
+- Filters bugfix
+
 ## 1.2.9
 
 ### Patch Changes
