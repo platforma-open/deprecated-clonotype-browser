@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.13
+
+### Patch Changes
+
+- Disable modal shadow
+
 ## 1.2.12
 
 ### Patch Changes
