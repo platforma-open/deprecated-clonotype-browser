@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.3.7
+
+### Patch Changes
+
+- Disable modal shadow
+
 ## 1.3.6
 
 ### Patch Changes
