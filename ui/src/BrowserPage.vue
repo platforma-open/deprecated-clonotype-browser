@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useApp } from './app';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import {
   PlBlockPage,
   PlBtnGhost,
@@ -8,6 +8,7 @@ import {
   PlAgDataTable,
   PlTableFilters,
   type PlDataTableSettings,
+  type PlAgDataTableController,
   PlMaskIcon24,
   PlDropdown
 } from '@platforma-sdk/ui-vue';
@@ -153,16 +154,23 @@ const hasFilters = computed(
   () => columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0
 );
 const filterIconName = computed(() => (hasFilters.value ? 'filter-on' : 'filter'));
-
 const filterIconColor = computed(() =>
   hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
 );
+
+const tableInstance = ref<PlAgDataTableController>();
 </script>
 
 <template>
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
+      <PlBtnGhost @click.stop="() => tableInstance?.exportCsv()">
+        Export
+        <template #append>
+          <PlMaskIcon24 name="export" />
+        </template>
+      </PlBtnGhost>
       <PlBtnGhost @click.stop="() => (uiState.model.filtersOpen = true)">
         Filters
         <template #append>
@@ -181,6 +189,7 @@ const filterIconColor = computed(() =>
         v-model="tableState"
         :settings="tableSettings"
         @columns-changed="(newColumns) => (columns = newColumns)"
+        ref="tableInstance"
       />
     </div>
   </PlBlockPage>

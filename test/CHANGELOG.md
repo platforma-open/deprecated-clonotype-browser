@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.14
+
+### Patch Changes
+
+- 62f2c23: PlAgDataTable export CSV
+
 ## 1.2.13
 
 ### Patch Changes
