@@ -1,17 +1,20 @@
 import {
+  AxisSpec,
   BlockModel,
-  type InferOutputsType,
   type InferHrefType,
+  type InferOutputsType,
+  type PColumnSpec,
   type PlDataTableState,
   type PlTableFiltersModel,
-  type PColumnSpec,
-  type ValueType,
+  Ref,
+  createPlDataTable,
+  createPlDataTableSheet,
+  getUniquePartitionKeys,
   isPColumn,
-  isPColumnSpec,
-  mapJoinEntry
+  isPColumnSpec
 } from '@platforma-sdk/model';
 
-export function getClonotypeColumnBlockId(spec: PColumnSpec): string | undefined {
+export function getCloneIdAxis(spec: PColumnSpec): AxisSpec | undefined {
   if (
     (spec.axesSpec.length === 3 &&
       spec.axesSpec[0].name === 'pl7.app/sampleId' &&
@@ -23,26 +26,30 @@ export function getClonotypeColumnBlockId(spec: PColumnSpec): string | undefined
       spec.axesSpec[2].name === 'pl7.app/vdj/cloneId' &&
       spec.axesSpec[3].name === 'pl7.app/vdj/tagValueCELL')
   )
-    return spec.axesSpec[2]?.domain?.['pl7.app/blockId'];
+    return spec.axesSpec[2];
   if (
     spec.axesSpec.length === 3 &&
     spec.axesSpec[0].name === 'pl7.app/sampleId' &&
     spec.axesSpec[1].name === 'pl7.app/vdj/cloneId' &&
     spec.axesSpec[2].name === 'pl7.app/vdj/tagValueCELL'
   )
-    return spec.axesSpec[1]?.domain?.['pl7.app/blockId'];
+    return spec.axesSpec[1];
   return undefined;
+}
+
+export function isCloneColumn(spec: PColumnSpec): boolean {
+  return getCloneIdAxis(spec) !== undefined;
 }
 
 export type UiState = {
   settingsOpen: boolean;
   filtersOpen: boolean;
+  anchorColumn?: Ref;
   filterModel: PlTableFiltersModel;
-  inputBlockId?: string;
   tableState: PlDataTableState;
 };
 
-export const model = BlockModel.create('Heavy')
+export const model = BlockModel.create()
   .withArgs({})
   .withUiState<UiState>({
     settingsOpen: true,
@@ -57,69 +64,63 @@ export const model = BlockModel.create('Heavy')
     }
   })
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
-  .output('inputOptions', (ctx) => {
-    const collection = ctx.resultPool.getSpecs();
-    if (collection === undefined) return undefined;
 
-    const potentialBlocks = collection.entries
-      .map(({ obj }) => obj)
-      .filter(isPColumnSpec)
-      .map(getClonotypeColumnBlockId)
-      .filter((blockId): blockId is string => blockId !== undefined)
-      .reduce((potentialBlocks, blockId) => {
-        potentialBlocks.add(blockId);
-        return potentialBlocks;
-      }, new Set<string>());
-
-    return [...potentialBlocks].map((blockId) => ({
-      blockId,
-      label: ctx.getBlockLabel(blockId)
-    }));
+  .retentiveOutput('inputOptions', (ctx) => {
+    return ctx.resultPool.getOptions((spec) => {
+      if (!isPColumnSpec(spec)) return false;
+      return (
+        spec.name === 'pl7.app/vdj/sequence' &&
+        spec.domain?.['pl7.app/vdj/feature'] === 'CDR3' &&
+        spec.domain?.['pl7.app/alphabet'] === 'nucleotide'
+      );
+    });
   })
-  .output('pFrame', (ctx) => {
-    const collection = ctx.resultPool.getData();
-    if (collection === undefined || !collection.isComplete) return undefined;
 
-    const valueTypes = ['Int', 'Long', 'Float', 'Double', 'String', 'Bytes'] as ValueType[];
-    const columns = collection.entries
-      .map(({ obj }) => obj)
-      .filter(isPColumn)
-      // Remove this filter in 2025
-      .filter((column) => valueTypes.find((valueType) => valueType === column.spec.valueType));
+  .output('sheets', (ctx) => {
+    if (!ctx.uiState?.anchorColumn) return undefined;
 
-    try {
-      return ctx.createPFrame(columns);
-    } catch (err) {
+    const anchor = ctx.resultPool.getPColumnByRef(ctx.uiState.anchorColumn);
+    if (!anchor) return undefined;
+
+    const r = getUniquePartitionKeys(anchor.data);
+
+    if (!r) return undefined;
+
+    return r.map((values, i) => createPlDataTableSheet(ctx, anchor.spec.axesSpec[i], values));
+  })
+
+  .output('pt', (ctx) => {
+    if (ctx.uiState?.anchorColumn === undefined) return undefined;
+
+    const anchorSpec = ctx.resultPool.getSpecByRef(ctx.uiState.anchorColumn);
+
+    if (!anchorSpec || !isPColumnSpec(anchorSpec)) {
+      console.error('Anchor spec is undefined or is not PColumnSpec', anchorSpec);
       return undefined;
     }
+
+    const anchorCloneId = getCloneIdAxis(anchorSpec);
+    if (!anchorCloneId) {
+      console.error('Anchor spec does not have cloneId', anchorSpec);
+      return undefined;
+    }
+
+    const columns = ctx.resultPool
+      .getData()
+      .entries.map((o) => o.obj)
+      .filter(isPColumn)
+      .filter((col) => {
+        if (!isPColumnSpec(col.spec)) return false;
+
+        const cloneId = getCloneIdAxis(col.spec);
+        if (!cloneId) return false;
+
+        return cloneId.domain?.['pl7.app/blockId'] === anchorCloneId.domain?.['pl7.app/blockId'];
+      });
+
+    return createPlDataTable(ctx, columns, ctx.uiState.tableState);
   })
-  .output('pTable', (ctx) => {
-    const join = ctx.uiState?.tableState.pTableParams?.join;
-    if (!join) return undefined;
 
-    const collection = ctx.resultPool.getData();
-    if (!collection || !collection.isComplete) return undefined;
-
-    const columns = collection.entries.map(({ obj }) => obj).filter(isPColumn);
-    if (columns.length === 0) return undefined;
-
-    let columnMissing = false;
-    const src = mapJoinEntry(join, (idAndSpec) => {
-      const column = columns.find((it) => it.id === idAndSpec.columnId);
-      if (!column) columnMissing = true;
-      return column!;
-    });
-    if (columnMissing) return undefined;
-
-    return ctx.createPTable({
-      src,
-      filters: [
-        ...(ctx.uiState.tableState.pTableParams?.filters ?? []),
-        ...(ctx.uiState.filterModel?.filters ?? [])
-      ],
-      sorting: ctx.uiState.tableState.pTableParams?.sorting ?? []
-    });
-  })
   .done();
 
 export type BlockOutputs = InferOutputsType<typeof model>;
