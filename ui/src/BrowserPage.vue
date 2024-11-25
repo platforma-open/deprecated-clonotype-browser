@@ -31,18 +31,22 @@ import * as lodash from 'lodash';
 
 const app = useApp();
 
-const uiState = app.createUiModel<UiState>(undefined, () => ({
-  settingsOpen: true,
-  filtersOpen: false,
-  filterModel: {},
-  tableState: {
-    gridState: {},
-    pTableParams: {
-      sorting: [],
-      filters: []
-    }
-  }
-} satisfies UiState));
+const uiState = app.createUiModel<UiState>(
+  undefined,
+  () =>
+    ({
+      settingsOpen: true,
+      filtersOpen: false,
+      filterModel: {},
+      tableState: {
+        gridState: {},
+        pTableParams: {
+          sorting: [],
+          filters: []
+        }
+      }
+    } satisfies UiState)
+);
 
 (() => {
   if (app.model.ui.filtersOpen === undefined) app.model.ui.filtersOpen = false;
@@ -93,10 +97,10 @@ const join = computedAsync(async () => {
     type: 'full',
     entries: clonotypeColumns.map(
       (column) =>
-      ({
-        type: 'column',
-        column
-      } satisfies ColumnJoinEntry<PColumnIdAndSpec>)
+        ({
+          type: 'column',
+          column
+        } satisfies ColumnJoinEntry<PColumnIdAndSpec>)
     )
   } satisfies FullJoin<PColumnIdAndSpec>;
 });
@@ -117,12 +121,10 @@ const sheetAxes = computed(() => {
   const columns = getColumnsFromJoin(joinValue);
   const axes = getAxesId(columns[0].spec.axesSpec).map(lodash.cloneDeep);
 
-  const ret = [
-    axes.find((axis) => axis.name === 'pl7.app/sampleId')!
-  ] satisfies AxesId;
+  const ret = [axes.find((axis) => axis.name === 'pl7.app/sampleId')!] satisfies AxesId;
 
-  const chainAxis = axes.find((axis) => axis.name === 'pl7.app/vdj/chain')
-  if (chainAxis) ret.push(chainAxis)
+  const chainAxis = axes.find((axis) => axis.name === 'pl7.app/vdj/chain');
+  if (chainAxis) ret.push(chainAxis);
 
   return ret;
 });
@@ -137,28 +139,37 @@ const tableState = computed({
 });
 const tableSettings = computed(
   () =>
-  ({
-    sourceType: 'pframe',
-    pFrame: app.model.outputs.pFrame,
-    join: join.value,
-    sheetAxes: sheetAxes.value,
-    pTable: app.model.outputs.pTable,
-  } satisfies PlDataTableSettings)
+    ({
+      sourceType: 'pframe',
+      pFrame: app.model.outputs.pFrame,
+      join: join.value,
+      sheetAxes: sheetAxes.value,
+      pTable: app.model.outputs.pTable
+    } satisfies PlDataTableSettings)
 );
 const columns = ref<PTableColumnSpec[]>([]);
+
+const hasFilters = computed(
+  () => columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0
+);
+const filterIconName = computed(() => (hasFilters.value ? 'filter-on' : 'filter'));
+
+const filterIconColor = computed(() =>
+  hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
+);
 </script>
 
 <template>
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
-      <PlBtnGhost @click.stop="() => uiState.model.filtersOpen = true">
+      <PlBtnGhost @click.stop="() => (uiState.model.filtersOpen = true)">
         Filters
         <template #append>
-          <PlMaskIcon24 :name="columns.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0 ? 'filter-on' : 'filter'"/>
+          <PlMaskIcon24 :name="filterIconName" :style="filterIconColor" />
         </template>
       </PlBtnGhost>
-      <PlBtnGhost @click.stop="() => uiState.model.settingsOpen = true">
+      <PlBtnGhost @click.stop="() => (uiState.model.settingsOpen = true)">
         Settings
         <template #append>
           <PlMaskIcon24 name="settings" />
@@ -166,7 +177,11 @@ const columns = ref<PTableColumnSpec[]>([]);
       </PlBtnGhost>
     </template>
     <div style="flex: 1">
-      <PlAgDataTable v-model="tableState" :settings="tableSettings" @columns-changed="(newColumns) => columns = newColumns" />
+      <PlAgDataTable
+        v-model="tableState"
+        :settings="tableSettings"
+        @columns-changed="(newColumns) => (columns = newColumns)"
+      />
     </div>
   </PlBlockPage>
   <PlSlideModal v-model="uiState.model.filtersOpen" :close-on-outside-click="true">
