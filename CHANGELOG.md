@@ -1,5 +1,13 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.3.8
+
+### Patch Changes
+
+- b4079f6: updated package and fixed filter button status
+- Updated dependencies [b4079f6]
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.3.8
+
 ## 1.3.7
 
 ### Patch Changes
