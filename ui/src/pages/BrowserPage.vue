@@ -4,6 +4,7 @@ import {
 } from '@platforma-sdk/model';
 import {
   PlAgDataTable,
+  PlAgDataTableController,
   PlBlockPage,
   PlBtnGhost,
   PlDropdownRef,
@@ -25,18 +26,33 @@ const tableSettings = computed(() => {
   } satisfies PlDataTableSettings
 });
 
+const hasFilters = computed(
+  () => columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0
+);
+const filterIconName = computed(() => (hasFilters.value ? 'filter-on' : 'filter'));
+const filterIconColor = computed(() =>
+  hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
+);
+
+
 const columns = ref<PTableColumnSpec[]>([]);
+const tableInstance = ref<PlAgDataTableController>();
 </script>
 
 <template>
   <PlBlockPage>
     <template #title>Clonotype Browser</template>
     <template #append>
-      <PlBtnGhost @click.stop="() => app.model.ui.filtersOpen = true">
+      <PlBtnGhost @click.stop="() => tableInstance?.exportCsv()">
+        Export
+        <template #append>
+          <PlMaskIcon24 name="export" />
+        </template>
+      </PlBtnGhost>
+      <PlBtnGhost @click.stop="() => (app.model.ui.filtersOpen = true)">
         Filters
         <template #append>
-          <PlMaskIcon24
-            :name="columns.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0 ? 'filter-on' : 'filter'" />
+          <PlMaskIcon24 :name="filterIconName" :style="filterIconColor" />
         </template>
       </PlBtnGhost>
       <PlBtnGhost @click.stop="() => app.model.ui.settingsOpen = true">
@@ -48,7 +64,7 @@ const columns = ref<PTableColumnSpec[]>([]);
     </template>
     <div style="flex: 1">
       <PlAgDataTable v-model="app.model.ui.tableState" :settings="tableSettings"
-        @columns-changed="(newColumns) => columns = newColumns" />
+        @columns-changed="(newColumns) => columns = newColumns" ref="tableInstance" />
     </div>
   </PlBlockPage>
   <PlSlideModal v-model="app.model.ui.filtersOpen" :close-on-outside-click="true">

@@ -1,5 +1,17 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.3.9
+
+### Patch Changes
+
+- 62f2c23: PlAgDataTable export CSV
+
+## 1.3.8
+
+### Patch Changes
+
+- b4079f6: updated package and fixed filter button status
+
 ## 1.3.7
 
 ### Patch Changes
