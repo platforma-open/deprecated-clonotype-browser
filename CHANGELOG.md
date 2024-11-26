@@ -1,5 +1,17 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.0
+
+### Minor Changes
+
+- 6f01434: Simplify sheets logic
+
+### Patch Changes
+
+- Updated dependencies [6f01434]
+  - @platforma-open/milaboratories.clonotype-browser.model@1.4.0
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.4.0
+
 ## 1.3.9
 
 ### Patch Changes
