@@ -42,6 +42,7 @@ export function isCloneColumn(spec: PColumnSpec): boolean {
 }
 
 export type UiState = {
+  title?: string;
   settingsOpen: boolean;
   filtersOpen: boolean;
   anchorColumn?: Ref;
@@ -120,6 +121,10 @@ export const model = BlockModel.create()
 
     return createPlDataTable(ctx, columns, ctx.uiState.tableState);
   })
+
+  .title((ctx) =>
+    ctx.uiState?.title ? `Clonotype Browser - ${ctx.uiState?.title}` : 'Clonotype Browser'
+  )
 
   .done();
 

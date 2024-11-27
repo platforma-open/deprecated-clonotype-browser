@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
-  PTableColumnSpec
+  PTableColumnSpec,
+  Ref
 } from '@platforma-sdk/model';
 import {
   PlAgDataTable,
@@ -34,6 +35,18 @@ const filterIconColor = computed(() =>
   hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
 );
 
+/* @deprecated Migrate to SDK method when will be published */
+function plRefsEqual(ref1: Ref, ref2: Ref) {
+  return ref1.blockId === ref2.blockId && ref1.name === ref2.name;
+}
+
+function setAnchorColumn(ref: Ref | undefined) {
+  app.model.ui.anchorColumn = ref;
+  if (ref)
+    app.model.ui.title = app.model.outputs.inputOptions?.find(o => plRefsEqual(o.ref, ref))?.label
+  else
+    app.model.ui.title = undefined;
+}
 
 const columns = ref<PTableColumnSpec[]>([]);
 const tableInstance = ref<PlAgDataTableController>();
@@ -41,7 +54,7 @@ const tableInstance = ref<PlAgDataTableController>();
 
 <template>
   <PlBlockPage>
-    <template #title>Clonotype Browser</template>
+    <template #title>Clonotype Browser{{ app.model.ui.title ? ` - ${app.model.ui.title}` : '' }}</template>
     <template #append>
       <PlBtnGhost @click.stop="() => tableInstance?.exportCsv()">
         Export
@@ -73,7 +86,7 @@ const tableInstance = ref<PlAgDataTableController>();
   </PlSlideModal>
   <PlSlideModal v-model="app.model.ui.settingsOpen" :close-on-outside-click="true">
     <template #title>Settings</template>
-    <PlDropdownRef :options="app.model.outputs.inputOptions" v-model="app.model.ui.anchorColumn" label="Select dataset"
-      clearable />
+    <PlDropdownRef :options="app.model.outputs.inputOptions" :model-value="app.model.ui.anchorColumn"
+      @update:model-value="setAnchorColumn" label="Select dataset" clearable />
   </PlSlideModal>
 </template>
