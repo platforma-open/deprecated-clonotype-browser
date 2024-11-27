@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.4.2
+
+### Patch Changes
+
+- PlTableFilters restrict reference values
+
 ## 1.4.1
 
 ### Patch Changes

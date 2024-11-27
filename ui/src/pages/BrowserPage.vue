@@ -4,6 +4,7 @@ import {
   Ref
 } from '@platforma-sdk/model';
 import {
+  MaskIconName24,
   PlAgDataTable,
   PlAgDataTableController,
   PlBlockPage,
@@ -19,20 +20,20 @@ import { useApp } from '../app';
 
 const app = useApp();
 
-const tableSettings = computed(() => {
+const tableSettings = computed<PlDataTableSettings>(() => {
   return {
     sourceType: 'ptable',
     pTable: app.model.outputs.pt,
-    sheets: app.model.outputs.sheets ?? []
-  } satisfies PlDataTableSettings
+    sheets: app.model.outputs.sheets
+  }
 });
 
-const hasFilters = computed(
-  () => columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0
+const hasFilters = computed<boolean>(
+  () => (columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0)
 );
-const filterIconName = computed(() => (hasFilters.value ? 'filter-on' : 'filter'));
+const filterIconName = computed<MaskIconName24>(() => (hasFilters.value ? 'filter-on' : 'filter'));
 const filterIconColor = computed(() =>
-  hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
+  (hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined)
 );
 
 /* @deprecated Migrate to SDK method when will be published */
@@ -43,7 +44,7 @@ function plRefsEqual(ref1: Ref, ref2: Ref) {
 function setAnchorColumn(ref: Ref | undefined) {
   app.model.ui.anchorColumn = ref;
   if (ref)
-    app.model.ui.title = app.model.outputs.inputOptions?.find(o => plRefsEqual(o.ref, ref))?.label
+    app.model.ui.title = app.model.outputs.inputOptions?.find(o => plRefsEqual(o.ref, ref))?.label;
   else
     app.model.ui.title = undefined;
 }
