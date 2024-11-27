@@ -28,5 +28,5 @@ catalog:
 
   '@platforma-open/milaboratories.samples-and-data': ^1.8.1
   '@platforma-open/milaboratories.samples-and-data.model': ^1.8.0
-  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.5.0
-  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.4.0
+  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.5.1
+  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.4.1
