@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.15
+
+### Patch Changes
+
+- a5eb405: SDK upgrade
+
 ## 1.2.14
 
 ### Patch Changes
