@@ -83,7 +83,7 @@ blockTest(
         ok: true,
         value: [
           {
-            label: 'Samples & Data / Sequencing Data'
+            label: 'Dataset 1'
           }
         ]
       }

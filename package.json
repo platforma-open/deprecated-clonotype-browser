@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
     "build": "rm -rf ./block-pack && block-tools pack",
@@ -31,7 +31,9 @@
       "description": "Browse clonotypes from clonotyping blocks",
       "longDescription": "file:./docs/description.md",
       "changelog": "file:CHANGELOG.md",
-      "tags": [],
+      "tags": [
+        "view"
+      ],
       "organization": {
         "name": "MiLaboratories Inc",
         "url": "https://milaboratories.com/",
@@ -45,11 +47,12 @@
   },
   "//": {
     "overrides": {
-      "@milaboratories/pl-model-common": "file:/Users/poslavskysv/Projects/milab/platforma/platforma-sdk/lib/model/common/package.tgz",
-      "@platforma-sdk/model": "file:/Users/poslavskysv/Projects/milab/platforma/platforma-sdk/sdk/model/package.tgz",
-      "@platforma-sdk/ui-vue": "file:/Users/poslavskysv/Projects/milab/platforma/platforma-sdk/sdk/ui-vue/package.tgz",
-      "@platforma-sdk/workflow-tengo": "file:/Users/poslavskysv/Projects/milab/platforma/platforma-sdk/sdk/workflow-tengo/package.tgz",
-      "@milaboratories/uikit": "file:/Users/poslavskysv/Projects/milab/platforma/platforma-sdk/lib/ui/uikit/package.tgz"
+      "@milaboratories/pl-model-common": "/path/to/platforma/lib/model/common/package.tgz",
+      "@platforma-sdk/model": "/path/to/platforma/sdk/model/package.tgz",
+      "@platforma-sdk/ui-vue": "/path/to/platforma/sdk/ui-vue/package.tgz",
+      "@platforma-sdk/workflow-tengo": "/path/to/platforma/sdk/workflow-tengo/package.tgz",
+      "@milaboratories/uikit": "/path/to/platforma/lib/ui/uikit/package.tgz"
     }
-  }
+  },
+  "pnpm": {}
 }

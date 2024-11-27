@@ -84,9 +84,7 @@ export const model = BlockModel.create()
     if (!anchor) return undefined;
 
     const r = getUniquePartitionKeys(anchor.data);
-
     if (!r) return undefined;
-
     return r.map((values, i) => createPlDataTableSheet(ctx, anchor.spec.axesSpec[i], values));
   })
 
@@ -94,7 +92,6 @@ export const model = BlockModel.create()
     if (ctx.uiState?.anchorColumn === undefined) return undefined;
 
     const anchorSpec = ctx.resultPool.getSpecByRef(ctx.uiState.anchorColumn);
-
     if (!anchorSpec || !isPColumnSpec(anchorSpec)) {
       console.error('Anchor spec is undefined or is not PColumnSpec', anchorSpec);
       return undefined;
@@ -115,11 +112,13 @@ export const model = BlockModel.create()
 
         const cloneId = getCloneIdAxis(col.spec);
         if (!cloneId) return false;
-
         return cloneId.domain?.['pl7.app/blockId'] === anchorCloneId.domain?.['pl7.app/blockId'];
       });
 
-    return createPlDataTable(ctx, columns, ctx.uiState.tableState);
+    return createPlDataTable(ctx, columns, ctx.uiState.tableState, [
+      ...(ctx.uiState.tableState.pTableParams?.filters ?? []),
+      ...(ctx.uiState.filterModel?.filters ?? [])
+    ]);
   })
 
   .title((ctx) =>
