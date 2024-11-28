@@ -1,5 +1,13 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.4
+
+### Patch Changes
+
+- d3c66c0: updated package version and added PlAgDataTableToolsPanel
+- Updated dependencies [d3c66c0]
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.4.4
+
 ## 1.4.3
 
 ### Patch Changes
