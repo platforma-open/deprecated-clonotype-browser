@@ -153,7 +153,6 @@ blockTest(
     await project.setUiState(cloneBrowserBlockId, {
       // anchorColumn:  @TODO fixme
       settingsOpen: true,
-      filtersOpen: false,
       filterModel: {},
       tableState: {
         gridState: {},
