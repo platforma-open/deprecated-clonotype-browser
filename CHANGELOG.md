@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.6
+
+### Patch Changes
+
+- Filters fix
+
 ## 1.4.5
 
 ### Patch Changes

@@ -11,7 +11,7 @@ catalog:
   '@platforma-sdk/model': ^1.14.1
   '@platforma-sdk/tengo-builder': ^1.17.3
   '@platforma-sdk/test': ^1.14.1
-  '@platforma-sdk/ui-vue': ^1.14.1
+  '@platforma-sdk/ui-vue': ^1.14.2
   '@platforma-sdk/workflow-tengo': ^2.5.0
   '@types/lodash': ^4.17.13
   '@vitejs/plugin-vue': ^5.2.1
