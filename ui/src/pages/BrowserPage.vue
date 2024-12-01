@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { PTableColumnSpec, Ref } from '@platforma-sdk/model';
 import {
-  MaskIconName24,
   PlAgDataTable,
   PlAgDataTableController,
   PlBlockPage,
@@ -18,6 +17,11 @@ import { useApp } from '../app';
 
 const app = useApp();
 
+/** UI state upgrader */ (() => {
+  if ('filtersOpen' in app.model.ui) delete app.model.ui.filtersOpen;
+  if (app.model.ui.filterModel === undefined) app.model.ui.filterModel = {};
+})();
+
 const tableSettings = computed<PlDataTableSettings>(() => {
   return {
     sourceType: 'ptable',
@@ -25,14 +29,6 @@ const tableSettings = computed<PlDataTableSettings>(() => {
     sheets: app.model.outputs.sheets
   };
 });
-
-const hasFilters = computed<boolean>(
-  () => columns.value.length > 0 && (app.model.ui.filterModel.filters ?? []).length > 0
-);
-const filterIconName = computed<MaskIconName24>(() => (hasFilters.value ? 'filter-on' : 'filter'));
-const filterIconColor = computed(() =>
-  hasFilters.value ? { backgroundColor: 'var(--border-color-focus)' } : undefined
-);
 
 /* @deprecated Migrate to SDK method when will be published */
 function plRefsEqual(ref1: Ref, ref2: Ref) {
@@ -58,17 +54,13 @@ const tableInstance = ref<PlAgDataTableController>();
       Clonotype Browser{{ app.model.ui.title ? ` - ${app.model.ui.title}` : '' }}
     </template>
     <template #append>
-      <PlAgDataTableToolsPanel />
+      <PlAgDataTableToolsPanel>
+        <PlTableFilters v-model="app.model.ui.filterModel" :columns="columns" />
+      </PlAgDataTableToolsPanel>
       <PlBtnGhost @click.stop="() => tableInstance?.exportCsv()">
         Export
         <template #append>
           <PlMaskIcon24 name="export" />
-        </template>
-      </PlBtnGhost>
-      <PlBtnGhost @click.stop="() => (app.model.ui.filtersOpen = true)">
-        Filters
-        <template #append>
-          <PlMaskIcon24 :name="filterIconName" :style="filterIconColor" />
         </template>
       </PlBtnGhost>
       <PlBtnGhost @click.stop="() => (app.model.ui.settingsOpen = true)">
@@ -88,10 +80,6 @@ const tableInstance = ref<PlAgDataTableController>();
       />
     </div>
   </PlBlockPage>
-  <PlSlideModal v-model="app.model.ui.filtersOpen" :close-on-outside-click="true">
-    <template #title>Filters</template>
-    <PlTableFilters v-model="app.model.ui.filterModel" :columns="columns" />
-  </PlSlideModal>
   <PlSlideModal v-model="app.model.ui.settingsOpen" :close-on-outside-click="true">
     <template #title>Settings</template>
     <PlDropdownRef

@@ -44,7 +44,6 @@ export function isCloneColumn(spec: PColumnSpec): boolean {
 export type UiState = {
   title?: string;
   settingsOpen: boolean;
-  filtersOpen: boolean;
   anchorColumn?: Ref;
   filterModel: PlTableFiltersModel;
   tableState: PlDataTableState;
@@ -54,7 +53,6 @@ export const model = BlockModel.create()
   .withArgs({})
   .withUiState<UiState>({
     settingsOpen: true,
-    filtersOpen: false,
     filterModel: {},
     tableState: {
       gridState: {},

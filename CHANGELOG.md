@@ -1,5 +1,14 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.5
+
+### Patch Changes
+
+- Table filters redesign
+- Updated dependencies
+  - @platforma-open/milaboratories.clonotype-browser.model@1.4.4
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.4.5
+
 ## 1.4.4
 
 ### Patch Changes
