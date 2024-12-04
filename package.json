@@ -28,11 +28,18 @@
       "url": "https://github.com/platforma-open/clonotype-browser",
       "docs": "https://github.com/platforma-open/clonotype-browser/docs",
       "support": "mailto:support@milaboratories.com",
-      "description": "Browse clonotypes from clonotyping blocks",
+      "description": "Browse your immune repertoire data.",
       "longDescription": "file:./docs/description.md",
       "changelog": "file:CHANGELOG.md",
       "tags": [
-        "view"
+        "view",
+        "immunology",
+        "VDJ",
+        "TCR",
+        "BCR",
+        "repertoire",
+        "export",
+        "clonotype"
       ],
       "organization": {
         "name": "MiLaboratories Inc",
