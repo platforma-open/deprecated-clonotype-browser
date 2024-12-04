@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PTableColumnSpec, Ref } from '@platforma-sdk/model';
+import { PlRef, plRefsEqual, PTableColumnSpec } from '@platforma-sdk/model';
 import {
   PlAgDataTable,
   PlAgDataTableController,
@@ -22,28 +22,22 @@ const app = useApp();
   if (app.model.ui.filterModel === undefined) app.model.ui.filterModel = {};
 })();
 
-const tableSettings = computed<PlDataTableSettings>(() => {
-  return {
-    sourceType: 'ptable',
-    pTable: app.model.outputs.pt,
-    sheets: app.model.outputs.sheets
-  };
-});
-
-/* @deprecated Migrate to SDK method when will be published */
-function plRefsEqual(ref1: Ref, ref2: Ref) {
-  return ref1.blockId === ref2.blockId && ref1.name === ref2.name;
-}
-
-function setAnchorColumn(ref: Ref | undefined) {
+function setAnchorColumn(ref: PlRef | undefined) {
   app.model.ui.anchorColumn = ref;
-  if (ref)
-    app.model.ui.title = app.model.outputs.inputOptions?.find((o) =>
+  app.model.ui.title = !!ref ? app.model.outputs.inputOptions?.find((o) =>
       plRefsEqual(o.ref, ref)
-    )?.label;
-  else app.model.ui.title = undefined;
+    )?.label : undefined;
 }
 
+const tableSettings = computed<PlDataTableSettings | undefined>(() =>
+  app.model.ui.anchorColumn
+    ? {
+        sourceType: 'ptable',
+        pTable: app.model.outputs.pt,
+        sheets: app.model.outputs.sheets
+      }
+    : undefined
+);
 const columns = ref<PTableColumnSpec[]>([]);
 const tableInstance = ref<PlAgDataTableController>();
 </script>
