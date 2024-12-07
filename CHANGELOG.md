@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.8
+
+### Patch Changes
+
+- sdk model version bump
+
 ## 1.4.7
 
 ### Patch Changes
