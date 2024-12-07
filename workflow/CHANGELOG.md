@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.16
+
+### Patch Changes
+
+- 6f81ec9: PlAgDataTable loading fix
+
 ## 1.2.15
 
 ### Patch Changes

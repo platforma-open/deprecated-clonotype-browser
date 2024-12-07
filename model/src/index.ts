@@ -5,8 +5,8 @@ import {
   type InferOutputsType,
   type PColumnSpec,
   type PlDataTableState,
+  PlRef,
   type PlTableFiltersModel,
-  Ref,
   createPlDataTable,
   createPlDataTableSheet,
   getUniquePartitionKeys,
@@ -44,7 +44,7 @@ export function isCloneColumn(spec: PColumnSpec): boolean {
 export type UiState = {
   title?: string;
   settingsOpen: boolean;
-  anchorColumn?: Ref;
+  anchorColumn?: PlRef;
   filterModel: PlTableFiltersModel;
   tableState: PlDataTableState;
 };
@@ -55,11 +55,7 @@ export const model = BlockModel.create()
     settingsOpen: true,
     filterModel: {},
     tableState: {
-      gridState: {},
-      pTableParams: {
-        sorting: [],
-        filters: []
-      }
+      gridState: {}
     }
   })
   .sections([{ type: 'link', href: '/', label: 'Browser' }])
@@ -87,9 +83,14 @@ export const model = BlockModel.create()
   })
 
   .output('pt', (ctx) => {
-    if (ctx.uiState?.anchorColumn === undefined) return undefined;
+    const anchorColumn = ctx.uiState?.anchorColumn;
+    if (!anchorColumn) return undefined;
 
-    const anchorSpec = ctx.resultPool.getSpecByRef(ctx.uiState.anchorColumn);
+    // wait until sheet filters are set
+    const sheetFilters = ctx.uiState.tableState.pTableParams?.filters;
+    if (!sheetFilters) return undefined;
+
+    const anchorSpec = ctx.resultPool.getSpecByRef(anchorColumn);
     if (!anchorSpec || !isPColumnSpec(anchorSpec)) {
       console.error('Anchor spec is undefined or is not PColumnSpec', anchorSpec);
       return undefined;
@@ -113,10 +114,7 @@ export const model = BlockModel.create()
         return cloneId.domain?.['pl7.app/blockId'] === anchorCloneId.domain?.['pl7.app/blockId'];
       });
 
-    return createPlDataTable(ctx, columns, ctx.uiState.tableState, [
-      ...(ctx.uiState.tableState.pTableParams?.filters ?? []),
-      ...(ctx.uiState.filterModel?.filters ?? [])
-    ]);
+    return createPlDataTable(ctx, columns, ctx.uiState.tableState, ctx.uiState.filterModel?.filters);
   })
 
   .title((ctx) =>
