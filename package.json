@@ -54,5 +54,7 @@
       "@milaboratories/uikit": "/path/to/platforma/lib/ui/uikit/package.tgz"
     }
   },
-  "pnpm": {}
+  "pnpm": {
+    "overrides": {}
+  }
 }
