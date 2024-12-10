@@ -12,7 +12,7 @@ import {
   type PlDataTableSettings,
   PlAgDataTableToolsPanel
 } from '@platforma-sdk/ui-vue';
-import { computed, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 import { useApp } from '../app';
 
 const app = useApp();
@@ -40,11 +40,6 @@ const tableSettings = computed<PlDataTableSettings | undefined>(() =>
 );
 const columns = ref<PTableColumnSpec[]>([]);
 const tableInstance = ref<PlAgDataTableController>();
-watch(
-  () => tableInstance.value,
-  (tableInstance) => tableInstance?.focusRow(["2E5ZL2G7JLUXDL7X2ZDUXX3H","IGH",90]),
-  { once: true },
-);
 </script>
 
 <template>
