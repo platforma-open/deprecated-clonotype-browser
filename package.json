@@ -1,50 +1,19 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser",
-  "version": "1.4.8",
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
-    "build": "rm -rf ./block-pack && block-tools pack",
-    "prepublishOnly": "block-tools pack && block-tools publish -r 's3://milab-euce1-prod-pkgs-s3-block-registry/pub/releases/?region=eu-central-1'"
-  },
-  "files": [
-    "index.d.ts",
-    "index.js"
-  ],
-  "dependencies": {
-    "@platforma-sdk/model": "catalog:",
-    "@platforma-open/milaboratories.clonotype-browser.workflow": "workspace:*",
-    "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
-    "@platforma-open/milaboratories.clonotype-browser.ui": "workspace:*"
-  },
-  "block": {
-    "components": {
-      "workflow": "@platforma-open/milaboratories.clonotype-browser.workflow/dist/tengo/tpl/main.plj.gz",
-      "model": "@platforma-open/milaboratories.clonotype-browser.model/dist/model.json",
-      "ui": "@platforma-open/milaboratories.clonotype-browser.ui/dist"
-    },
-    "meta": {
-      "title": "Clonotype Browser",
-      "logo": "file:logos/block-logo.png",
-      "url": "https://github.com/platforma-open/clonotype-browser",
-      "docs": "https://github.com/platforma-open/clonotype-browser/docs",
-      "support": "mailto:support@milaboratories.com",
-      "description": "Browse clonotypes from clonotyping blocks",
-      "longDescription": "file:./docs/description.md",
-      "changelog": "file:CHANGELOG.md",
-      "tags": [
-        "view"
-      ],
-      "organization": {
-        "name": "MiLaboratories Inc",
-        "url": "https://milaboratories.com/",
-        "logo": "file:logos/organization-logo.png"
-      }
-    }
+    "build": "turbo run build",
+    "test": "turbo run test --concurrency 1 --env-mode=loose",
+    "mark-stable": "turbo run mark-stable",
+    "watch": "turbo watch build",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
   },
   "devDependencies": {
-    "@platforma-sdk/block-tools": "catalog:",
+    "turbo": "catalog:",
     "@changesets/cli": "catalog:"
   },
+  "packageManager": "pnpm@9.12.0",
   "//": {
     "overrides": {
       "@milaboratories/pl-model-common": "/path/to/platforma/lib/model/common/package.tgz",
@@ -54,5 +23,7 @@
       "@milaboratories/uikit": "/path/to/platforma/lib/ui/uikit/package.tgz"
     }
   },
-  "pnpm": {}
+  "pnpm": {
+    "overrides": {}
+  }
 }

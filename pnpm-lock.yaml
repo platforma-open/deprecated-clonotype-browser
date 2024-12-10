@@ -54,6 +54,9 @@ catalogs:
     tsup:
       specifier: ^8.3.5
       version: 8.3.5
+    turbo:
+      specifier: ^2.3.3
+      version: 2.3.3
     typescript:
       specifier: ~5.6.3
       version: 5.6.3
@@ -73,23 +76,29 @@ catalogs:
 importers:
 
   .:
-    dependencies:
-      '@platforma-open/milaboratories.clonotype-browser.model':
-        specifier: workspace:*
-        version: link:model
-      '@platforma-open/milaboratories.clonotype-browser.ui':
-        specifier: workspace:*
-        version: link:ui
-      '@platforma-open/milaboratories.clonotype-browser.workflow':
-        specifier: workspace:*
-        version: link:workflow
-      '@platforma-sdk/model':
-        specifier: 'catalog:'
-        version: 1.17.0
     devDependencies:
       '@changesets/cli':
         specifier: 'catalog:'
         version: 2.27.10
+      turbo:
+        specifier: 'catalog:'
+        version: 2.3.3
+
+  block:
+    dependencies:
+      '@platforma-open/milaboratories.clonotype-browser.model':
+        specifier: workspace:*
+        version: link:../model
+      '@platforma-open/milaboratories.clonotype-browser.ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@platforma-open/milaboratories.clonotype-browser.workflow':
+        specifier: workspace:*
+        version: link:../workflow
+      '@platforma-sdk/model':
+        specifier: 'catalog:'
+        version: 1.17.0
+    devDependencies:
       '@platforma-sdk/block-tools':
         specifier: 'catalog:'
         version: 2.4.9
@@ -129,7 +138,7 @@ importers:
         version: 1.8.2
       this-block:
         specifier: workspace:@platforma-open/milaboratories.clonotype-browser@*
-        version: link:..
+        version: link:../block
     devDependencies:
       '@platforma-sdk/test':
         specifier: 'catalog:'
@@ -948,9 +957,6 @@ packages:
   '@platforma-sdk/block-tools@2.4.9':
     resolution: {integrity: sha512-zLX86pp0lRtFVsmnzcO5+oE0i3f7cfQBzXYi3ZjO2tg3ZByCRbc2Xi3sT7ZdjNSPFMKQad1of2UfTwH8hbbIxw==}
     hasBin: true
-
-  '@platforma-sdk/model@1.15.4':
-    resolution: {integrity: sha512-8ifmN0L/PwwKL9j75WoIUDPRJx3hZorLcvHL5fF1gfRTsFh4q9ox7xPyhoHxJ2WlHjgtxYMJ57wrP3OlIjj7pQ==}
 
   '@platforma-sdk/model@1.17.0':
     resolution: {integrity: sha512-5NidfQiTvUrhnVCB8GFdTULUJqEWeDlgjhLXa24EgF79Lzs32DSDRHUtq0mIBWfz+rxMBkcaUx6T4k4IOQ8BzA==}
@@ -2645,6 +2651,40 @@ packages:
       typescript:
         optional: true
 
+  turbo-darwin-64@2.3.3:
+    resolution: {integrity: sha512-bxX82xe6du/3rPmm4aCC5RdEilIN99VUld4HkFQuw+mvFg6darNBuQxyWSHZTtc25XgYjQrjsV05888w1grpaA==}
+    cpu: [x64]
+    os: [darwin]
+
+  turbo-darwin-arm64@2.3.3:
+    resolution: {integrity: sha512-DYbQwa3NsAuWkCUYVzfOUBbSUBVQzH5HWUFy2Kgi3fGjIWVZOFk86ss+xsWu//rlEAfYwEmopigsPYSmW4X15A==}
+    cpu: [arm64]
+    os: [darwin]
+
+  turbo-linux-64@2.3.3:
+    resolution: {integrity: sha512-eHj9OIB0dFaP6BxB88jSuaCLsOQSYWBgmhy2ErCu6D2GG6xW3b6e2UWHl/1Ho9FsTg4uVgo4DB9wGsKa5erjUA==}
+    cpu: [x64]
+    os: [linux]
+
+  turbo-linux-arm64@2.3.3:
+    resolution: {integrity: sha512-NmDE/NjZoDj1UWBhMtOPmqFLEBKhzGS61KObfrDEbXvU3lekwHeoPvAMfcovzswzch+kN2DrtbNIlz+/rp8OCg==}
+    cpu: [arm64]
+    os: [linux]
+
+  turbo-windows-64@2.3.3:
+    resolution: {integrity: sha512-O2+BS4QqjK3dOERscXqv7N2GXNcqHr9hXumkMxDj/oGx9oCatIwnnwx34UmzodloSnJpgSqjl8iRWiY65SmYoQ==}
+    cpu: [x64]
+    os: [win32]
+
+  turbo-windows-arm64@2.3.3:
+    resolution: {integrity: sha512-dW4ZK1r6XLPNYLIKjC4o87HxYidtRRcBeo/hZ9Wng2XM/MqqYkAyzJXJGgRMsc0MMEN9z4+ZIfnSNBrA0b08ag==}
+    cpu: [arm64]
+    os: [win32]
+
+  turbo@2.3.3:
+    resolution: {integrity: sha512-DUHWQAcC8BTiUZDRzAYGvpSpGLiaOQPfYXlCieQbwUvmml/LRGIe3raKdrOPOoiX0DYlzxs2nH6BoWJoZrj8hA==}
+    hasBin: true
+
   type-fest@0.21.3:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
@@ -4112,7 +4152,7 @@ snapshots:
 
   '@platforma-open/milaboratories.mixcr-clonotyping.model@1.4.2':
     dependencies:
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
       zod: 3.23.8
 
   '@platforma-open/milaboratories.mixcr-clonotyping.ui@1.6.2(typescript@5.6.3)':
@@ -4123,7 +4163,7 @@ snapshots:
       '@ag-grid-community/vue3': 32.3.3(typescript@5.6.3)
       '@milaboratories/helpers': 1.6.7
       '@platforma-open/milaboratories.mixcr-clonotyping.model': 1.4.2
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
       '@platforma-sdk/ui-vue': 1.16.0(typescript@5.6.3)
       '@vueuse/core': 12.0.0(typescript@5.6.3)
       utility-types: 3.11.0
@@ -4139,13 +4179,13 @@ snapshots:
       '@platforma-open/milaboratories.mixcr-clonotyping.model': 1.4.2
       '@platforma-open/milaboratories.mixcr-clonotyping.ui': 1.6.2(typescript@5.6.3)
       '@platforma-open/milaboratories.mixcr-clonotyping.workflow': 1.9.4
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
     transitivePeerDependencies:
       - typescript
 
   '@platforma-open/milaboratories.samples-and-data.model@1.8.2':
     dependencies:
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
       zod: 3.23.8
 
   '@platforma-open/milaboratories.samples-and-data.ui@1.13.5': {}
@@ -4157,7 +4197,7 @@ snapshots:
       '@platforma-open/milaboratories.samples-and-data.model': 1.8.2
       '@platforma-open/milaboratories.samples-and-data.ui': 1.13.5
       '@platforma-open/milaboratories.samples-and-data.workflow': 1.9.1
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
 
   '@platforma-open/milaboratories.software-small-binaries@1.14.6': {}
 
@@ -4181,12 +4221,6 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
       - supports-color
-
-  '@platforma-sdk/model@1.15.4':
-    dependencies:
-      '@milaboratories/pl-model-common': 1.8.1
-      utility-types: 3.11.0
-      zod: 3.23.8
 
   '@platforma-sdk/model@1.17.0':
     dependencies:
@@ -4248,7 +4282,7 @@ snapshots:
       '@ag-grid-enterprise/server-side-row-model': 32.3.3
       '@ag-grid-enterprise/side-bar': 32.3.3
       '@milaboratories/uikit': 2.2.26(typescript@5.6.3)
-      '@platforma-sdk/model': 1.15.4
+      '@platforma-sdk/model': 1.17.0
       canonicalize: 2.0.0
       lru-cache: 11.0.2
       vue: 3.5.13(typescript@5.6.3)
@@ -6086,6 +6120,33 @@ snapshots:
       - supports-color
       - tsx
       - yaml
+
+  turbo-darwin-64@2.3.3:
+    optional: true
+
+  turbo-darwin-arm64@2.3.3:
+    optional: true
+
+  turbo-linux-64@2.3.3:
+    optional: true
+
+  turbo-linux-arm64@2.3.3:
+    optional: true
+
+  turbo-windows-64@2.3.3:
+    optional: true
+
+  turbo-windows-arm64@2.3.3:
+    optional: true
+
+  turbo@2.3.3:
+    optionalDependencies:
+      turbo-darwin-64: 2.3.3
+      turbo-darwin-arm64: 2.3.3
+      turbo-linux-64: 2.3.3
+      turbo-linux-arm64: 2.3.3
+      turbo-windows-64: 2.3.3
+      turbo-windows-arm64: 2.3.3
 
   type-fest@0.21.3: {}
 
