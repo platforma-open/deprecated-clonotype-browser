@@ -124,6 +124,9 @@ importers:
 
   test:
     dependencies:
+      '@platforma-open/milaboratories.clonotype-browser.model':
+        specifier: workspace:*
+        version: link:../model
       '@platforma-open/milaboratories.mixcr-clonotyping':
         specifier: 'catalog:'
         version: 1.5.4(typescript@5.6.3)
@@ -136,6 +139,9 @@ importers:
       '@platforma-open/milaboratories.samples-and-data.model':
         specifier: 'catalog:'
         version: 1.8.2
+      '@platforma-sdk/model':
+        specifier: 'catalog:'
+        version: 1.17.0
       this-block:
         specifier: workspace:@platforma-open/milaboratories.clonotype-browser@*
         version: link:../block
