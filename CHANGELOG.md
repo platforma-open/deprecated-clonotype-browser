@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.4.11
+
+### Patch Changes
+
+- Dependancy update
+
 ## 1.4.10
 
 ### Patch Changes
