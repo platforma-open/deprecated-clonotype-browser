@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.2.18
+
+### Patch Changes
+
+- ab68da2: PlAgDataTable export CSV without visible data reload
+
 ## 1.2.17
 
 ### Patch Changes
