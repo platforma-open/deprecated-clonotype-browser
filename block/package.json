@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
     "build": "rm -rf ./block-pack && block-tools pack",
@@ -46,5 +46,5 @@
   "devDependencies": {
     "@platforma-sdk/block-tools": "catalog:"
   },
- "packageManager": "pnpm@9.12.0"
+  "packageManager": "pnpm@9.12.0"
 }

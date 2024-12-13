@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.test
 
+## 1.3.0
+
+### Minor Changes
+
+- ba54d87: chore: fix test migrate to a new ci
+
 ## 1.2.18
 
 ### Patch Changes
