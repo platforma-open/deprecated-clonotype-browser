@@ -1,0 +1,50 @@
+{
+  "name": "@platforma-open/milaboratories.clonotype-browser",
+  "version": "1.4.8",
+  "scripts": {
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,vue}\"",
+    "build": "rm -rf ./block-pack && block-tools pack",
+    "mark-stable": "block-tools mark-stable -r 's3://milab-euce1-prod-pkgs-s3-block-registry/pub/releases/?region=eu-central-1'",
+    "prepublishOnly": "block-tools pack && block-tools publish -r 's3://milab-euce1-prod-pkgs-s3-block-registry/pub/releases/?region=eu-central-1'"
+  },
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "dependencies": {
+    "@platforma-sdk/model": "catalog:",
+    "@platforma-open/milaboratories.clonotype-browser.workflow": "workspace:*",
+    "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
+    "@platforma-open/milaboratories.clonotype-browser.ui": "workspace:*"
+  },
+  "block": {
+    "components": {
+      "workflow": "@platforma-open/milaboratories.clonotype-browser.workflow/dist/tengo/tpl/main.plj.gz",
+      "model": "@platforma-open/milaboratories.clonotype-browser.model/dist/model.json",
+      "ui": "@platforma-open/milaboratories.clonotype-browser.ui/dist"
+    },
+    "meta": {
+      "title": "Clonotype Browser",
+      "logo": "file:../logos/block-logo.png",
+      "url": "https://github.com/platforma-open/clonotype-browser",
+      "docs": "https://github.com/platforma-open/clonotype-browser/docs",
+      "support": "mailto:support@milaboratories.com",
+      "description": "Browse clonotypes from clonotyping blocks",
+      "longDescription": "file:../docs/description.md",
+      "changelog": "file:../CHANGELOG.md",
+      "tags": [
+        "view"
+      ],
+      "organization": {
+        "name": "MiLaboratories Inc",
+        "url": "https://milaboratories.com/",
+        "logo": "file:../logos/organization-logo.png"
+      },
+      "marketplaceRanking": 10000
+    }
+  },
+  "devDependencies": {
+    "@platforma-sdk/block-tools": "catalog:"
+  },
+ "packageManager": "pnpm@9.12.0"
+}

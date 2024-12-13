@@ -11,10 +11,12 @@
   "keywords": [],
   "dependencies": {
     "this-block": "workspace:@platforma-open/milaboratories.clonotype-browser@*",
+    "@platforma-open/milaboratories.clonotype-browser.model": "workspace:*",
     "@platforma-open/milaboratories.samples-and-data.model": "catalog:",
     "@platforma-open/milaboratories.samples-and-data": "catalog:",
     "@platforma-open/milaboratories.mixcr-clonotyping.model": "catalog:",
-    "@platforma-open/milaboratories.mixcr-clonotyping": "catalog:"
+    "@platforma-open/milaboratories.mixcr-clonotyping": "catalog:",
+    "@platforma-sdk/model": "catalog:"
   },
   "devDependencies": {
     "@platforma-sdk/test": "catalog:",
