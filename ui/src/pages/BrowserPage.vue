@@ -2,7 +2,6 @@
 import { PlRef, plRefsEqual, PTableColumnSpec } from '@platforma-sdk/model';
 import {
   PlAgDataTable,
-  PlAgDataTableController,
   PlBlockPage,
   PlBtnGhost,
   PlDropdownRef,
@@ -10,7 +9,7 @@ import {
   PlSlideModal,
   PlTableFilters,
   type PlDataTableSettings,
-  PlAgDataTableToolsPanel
+  PlAgDataTableToolsPanel,
 } from '@platforma-sdk/ui-vue';
 import { computed, ref } from 'vue';
 import { useApp } from '../app';
