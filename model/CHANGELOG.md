@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.4.7
+
+### Patch Changes
+
+- a6fe112: Dependancy update
+
 ## 1.4.6
 
 ### Patch Changes
