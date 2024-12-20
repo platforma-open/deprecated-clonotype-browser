@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.19
+
+### Patch Changes
+
+- 0a5c64f: Dependancy update
+
 ## 1.2.18
 
 ### Patch Changes
