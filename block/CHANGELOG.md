@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.6.3
+
+### Patch Changes
+
+- d7763b1: chore: fix changelog
+
 ## 1.6.2
 
 ### Patch Changes
