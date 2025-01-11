@@ -31,7 +31,7 @@
       "support": "mailto:support@milaboratories.com",
       "description": "Browse clonotypes from clonotyping blocks",
       "longDescription": "file:../docs/description.md",
-      "changelog": "file:../CHANGELOG.md",
+      "changelog": "file:./CHANGELOG.md",
       "tags": [
         "view"
       ],
