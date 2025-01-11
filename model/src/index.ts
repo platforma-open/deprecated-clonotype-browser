@@ -114,7 +114,9 @@ export const model = BlockModel.create()
         return cloneId.domain?.['pl7.app/blockId'] === anchorCloneId.domain?.['pl7.app/blockId'];
       });
 
-    return createPlDataTable(ctx, columns, ctx.uiState.tableState, ctx.uiState.filterModel?.filters);
+    return createPlDataTable(ctx, columns, ctx.uiState.tableState, {
+      filters: ctx.uiState.filterModel?.filters
+    });
   })
 
   .title((ctx) =>
