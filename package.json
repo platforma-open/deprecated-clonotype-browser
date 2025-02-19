@@ -10,8 +10,8 @@
     "version-packages": "changeset version"
   },
   "devDependencies": {
-    "turbo": "catalog:",
-    "@changesets/cli": "catalog:"
+    "@changesets/cli": "catalog:",
+    "turbo": "catalog:"
   },
   "packageManager": "pnpm@9.12.0",
   "//": {
@@ -24,6 +24,12 @@
     }
   },
   "pnpm": {
-    "overrides": {}
+    "overrides": {
+      "nanoid@<3.3.8": ">=3.3.8",
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "vitest@>=2.0.0 <2.1.9": ">=2.1.9",
+      "vite@>=5.0.0 <=5.4.11": ">=5.4.12",
+      "vite@>=6.0.0 <=6.0.8": ">=6.0.9"
+    }
   }
 }
