@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.4.9
+
+### Patch Changes
+
+- fa73a88: Remove console.error calls from model
+
 ## 1.4.8
 
 ### Patch Changes
