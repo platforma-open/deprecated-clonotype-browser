@@ -92,13 +92,11 @@ export const model = BlockModel.create()
 
     const anchorSpec = ctx.resultPool.getSpecByRef(anchorColumn);
     if (!anchorSpec || !isPColumnSpec(anchorSpec)) {
-      console.error('Anchor spec is undefined or is not PColumnSpec', anchorSpec);
       return undefined;
     }
 
     const anchorCloneId = getCloneIdAxis(anchorSpec);
     if (!anchorCloneId) {
-      console.error('Anchor spec does not have cloneId', anchorSpec);
       return undefined;
     }
 
