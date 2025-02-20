@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.4.12
+
+### Patch Changes
+
+- 1e37174: [sdk/ui-vue] PlAgDataGrid shows wrong loading status
+
 ## 1.4.11
 
 ### Patch Changes
