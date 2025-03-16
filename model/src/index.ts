@@ -14,31 +14,22 @@ import {
   isPColumnSpec
 } from '@platforma-sdk/model';
 
-export function getCloneIdAxis(spec: PColumnSpec): AxisSpec | undefined {
-  if (
-    (spec.axesSpec.length === 3 &&
-      spec.axesSpec[0].name === 'pl7.app/sampleId' &&
-      spec.axesSpec[1].name === 'pl7.app/vdj/chain' &&
-      spec.axesSpec[2].name === 'pl7.app/vdj/cloneId') ||
-    (spec.axesSpec.length === 4 &&
-      spec.axesSpec[0].name === 'pl7.app/sampleId' &&
-      spec.axesSpec[1].name === 'pl7.app/vdj/chain' &&
-      spec.axesSpec[2].name === 'pl7.app/vdj/cloneId' &&
-      spec.axesSpec[3].name === 'pl7.app/vdj/tagValueCELL')
-  )
-    return spec.axesSpec[2];
-  if (
-    spec.axesSpec.length === 3 &&
-    spec.axesSpec[0].name === 'pl7.app/sampleId' &&
-    spec.axesSpec[1].name === 'pl7.app/vdj/cloneId' &&
-    spec.axesSpec[2].name === 'pl7.app/vdj/tagValueCELL'
-  )
-    return spec.axesSpec[1];
-  return undefined;
+/**
+ * Get the cloneId axis (produced by the MiXCR Clonotyping block v1.x) from the column spec
+ * @param spec - column spec
+ * @returns the cloneId axis
+ */
+function getCloneIdAxis(spec: PColumnSpec): AxisSpec | undefined {
+  return spec.axesSpec.find((ax) => ax.name === 'pl7.app/vdj/cloneId');
 }
 
-export function isCloneColumn(spec: PColumnSpec): boolean {
-  return getCloneIdAxis(spec) !== undefined;
+/**
+ * Get the clonotypeKey axis (produced by the MiXCR Clonotyping block v2.x) from the column spec
+ * @param spec - column spec
+ * @returns the clonotypeKey axis
+ */
+function getCloneKeyAxis(spec: PColumnSpec): AxisSpec | undefined {
+  return spec.axesSpec.find((ax) => ax.name === 'pl7.app/vdj/clonotypeKey');
 }
 
 export type UiState = {
@@ -49,6 +40,28 @@ export type UiState = {
   tableState: PlDataTableState;
 };
 
+/**
+ * Check whether the column is a CDR3 column from v1.x of the MiXCR Clonotyping block
+ * @param spec - column spec
+ * @returns true if the column is a CDR3 column from v1.x of the MiXCR Clonotyping block
+ */
+const isAnchorColV1 = (spec: PColumnSpec) =>
+  spec.name === 'pl7.app/vdj/sequence' &&
+  spec.domain?.['pl7.app/vdj/feature'] === 'CDR3' &&
+  spec.domain?.['pl7.app/alphabet'] === 'nucleotide' &&
+  spec.axesSpec.some((ax) => ax.name === 'pl7.app/vdj/cloneId');
+
+/**
+ * Check whether the column is a read count column from v2.x of the MiXCR Clonotyping block
+ * @param spec - column spec
+ * @returns true if the column is a read count column from v2.x of the MiXCR Clonotyping block
+ */
+const isAnchorColV2 = (spec: PColumnSpec) =>
+  spec.axesSpec.length === 2 &&
+  spec.axesSpec[0].name === 'pl7.app/sampleId' &&
+  spec.axesSpec[1].name === 'pl7.app/vdj/clonotypeKey' &&
+  spec.annotations?.['pl7.app/isAnchor'] === 'true';
+
 export const model = BlockModel.create()
   .withArgs({})
   .withUiState<UiState>({
@@ -58,16 +71,12 @@ export const model = BlockModel.create()
       gridState: {}
     }
   })
-  .sections([{ type: 'link', href: '/', label: 'Browser' }])
+  .sections((_) => [{ type: 'link', href: '/', label: 'Browser' }])
 
   .retentiveOutput('inputOptions', (ctx) => {
     return ctx.resultPool.getOptions((spec) => {
       if (!isPColumnSpec(spec)) return false;
-      return (
-        spec.name === 'pl7.app/vdj/sequence' &&
-        spec.domain?.['pl7.app/vdj/feature'] === 'CDR3' &&
-        spec.domain?.['pl7.app/alphabet'] === 'nucleotide'
-      );
+      return isAnchorColV1(spec) || isAnchorColV2(spec);
     });
   })
 
@@ -95,8 +104,22 @@ export const model = BlockModel.create()
       return undefined;
     }
 
-    const anchorCloneId = getCloneIdAxis(anchorSpec);
-    if (!anchorCloneId) {
+    const isV1 = isAnchorColV1(anchorSpec);
+    const isV2 = isAnchorColV2(anchorSpec);
+
+    if (!isV1 && !isV2) return undefined;
+
+    const getAnchorCloneAxis = (spec: PColumnSpec) => {
+      if (isV1) {
+        return getCloneIdAxis(spec);
+      } else if (isV2) {
+        return getCloneKeyAxis(spec);
+      }
+    };
+
+    const anchorCloneAxis = getAnchorCloneAxis(anchorSpec);
+
+    if (!anchorCloneAxis) {
       return undefined;
     }
 
@@ -106,10 +129,16 @@ export const model = BlockModel.create()
       .filter(isPColumn)
       .filter((col) => {
         if (!isPColumnSpec(col.spec)) return false;
-
-        const cloneId = getCloneIdAxis(col.spec);
-        if (!cloneId) return false;
-        return cloneId.domain?.['pl7.app/blockId'] === anchorCloneId.domain?.['pl7.app/blockId'];
+        const cloneAxis = getAnchorCloneAxis(col.spec);
+        if (!cloneAxis) return false;
+        return isV1
+          ? // for v1 wi only check block id of axis
+            cloneAxis.domain?.['pl7.app/blockId'] === anchorCloneAxis.domain?.['pl7.app/blockId']
+          : // for v2 we check clonotypeKey structure, column blockId and column chain
+            cloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] ===
+              anchorCloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] &&
+              col.spec.domain?.['pl7.app/blockId'] === anchorSpec.domain?.['pl7.app/blockId'] &&
+              col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'];
       });
 
     return createPlDataTable(ctx, columns, ctx.uiState.tableState, {
