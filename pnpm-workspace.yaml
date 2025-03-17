@@ -6,22 +6,22 @@ packages:
   - test
 
 catalog:
-  '@changesets/cli': ^2.28.0
-  '@platforma-sdk/block-tools': ^2.5.13
-  '@platforma-sdk/model': ^1.22.18
-  '@platforma-sdk/tengo-builder': ^1.17.7
-  '@platforma-sdk/test': ^1.22.54
-  '@platforma-sdk/ui-vue': ^1.22.56
-  '@platforma-sdk/workflow-tengo': ^2.12.1
-  '@types/lodash': ^4.17.15
-  '@vitejs/plugin-vue': ^5.2.1
+  '@changesets/cli': ^2.28.1
+  '@platforma-sdk/block-tools': ^2.5.19
+  '@platforma-sdk/model': ^1.22.97
+  '@platforma-sdk/tengo-builder': ^1.19.2
+  '@platforma-sdk/test': ^1.22.101
+  '@platforma-sdk/ui-vue': ^1.22.97
+  '@platforma-sdk/workflow-tengo': ^2.15.12
+  '@types/lodash': ^4.17.16
+  '@vitejs/plugin-vue': ^5.2.2
   '@vueuse/core': ^12.7.0
   'lodash': ^4.17.21
   'tsup': ^8.3.6
-  'turbo': ^2.4.2
+  'turbo': ^2.4.4
   'typescript': ^5.7.3
-  'vite': ^6.1.1
-  'vitest': ^3.0.6
+  'vite': ^6.2.2
+  'vitest': ^3.0.8
   'vue': ^3.5.13
   'vue-tsc': ^2.2.2
 
@@ -29,5 +29,5 @@ catalog:
 
   '@platforma-open/milaboratories.samples-and-data': ^1.9.8
   '@platforma-open/milaboratories.samples-and-data.model': ^1.9.1
-  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.8.6
-  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.5.1
+  '@platforma-open/milaboratories.mixcr-clonotyping': ^1.8.14
+  '@platforma-open/milaboratories.mixcr-clonotyping.model': ^1.8.0
