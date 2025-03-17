@@ -137,7 +137,7 @@ export const model = BlockModel.create()
           : // for v2 we check clonotypeKey structure, column blockId and column chain
             cloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] ===
               anchorCloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] &&
-              col.spec.domain?.['pl7.app/blockId'] === anchorSpec.domain?.['pl7.app/blockId'] &&
+              col.spec.domain?.['pl7.app/vdj/clonotypingRunId'] === anchorSpec.domain?.['pl7.app/vdj/clonotypingRunId'] &&
               col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'];
       });
 
