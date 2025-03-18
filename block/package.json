@@ -33,14 +33,17 @@
       "longDescription": "file:../docs/description.md",
       "changelog": "file:./CHANGELOG.md",
       "tags": [
-        "view"
+        "airr",
+        "downstream",
+        "single-cell",
+        "visualization"
       ],
       "organization": {
         "name": "MiLaboratories Inc",
         "url": "https://milaboratories.com/",
         "logo": "file:../logos/organization-logo.png"
       },
-      "marketplaceRanking": 10000
+      "marketplaceRanking": 16700
     }
   },
   "devDependencies": {
