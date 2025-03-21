@@ -138,7 +138,8 @@ export const model = BlockModel.create()
             cloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] ===
               anchorCloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] &&
               col.spec.domain?.['pl7.app/vdj/clonotypingRunId'] === anchorSpec.domain?.['pl7.app/vdj/clonotypingRunId'] &&
-              col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'];
+              col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'] && // TODO delete after sc PR in mixcr clonotyping 2 is merged
+              col.spec.domain?.['pl7.app/vdj/chain'] === anchorSpec.domain?.['pl7.app/vdj/chain'];
       });
 
     return createPlDataTable(ctx, columns, ctx.uiState.tableState, {
