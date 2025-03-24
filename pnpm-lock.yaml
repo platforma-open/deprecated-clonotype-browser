@@ -28,8 +28,8 @@ catalogs:
       specifier: ^1.23.0
       version: 1.23.0
     '@platforma-sdk/tengo-builder':
-      specifier: ^1.19.2
-      version: 1.19.2
+      specifier: ^2.0.0
+      version: 2.0.0
     '@platforma-sdk/test':
       specifier: ^1.23.3
       version: 1.23.3
@@ -200,16 +200,17 @@ importers:
         version: 2.2.2(typescript@5.7.3)
 
   workflow:
-    devDependencies:
-      '@platforma-sdk/tengo-builder':
-        specifier: 'catalog:'
-        version: 1.19.2
-      '@platforma-sdk/test':
-        specifier: 'catalog:'
-        version: 1.23.3(@types/node@22.0.0)(yaml@2.6.1)
+    dependencies:
       '@platforma-sdk/workflow-tengo':
         specifier: 'catalog:'
         version: 2.16.1
+    devDependencies:
+      '@platforma-sdk/tengo-builder':
+        specifier: 'catalog:'
+        version: 2.0.0
+      '@platforma-sdk/test':
+        specifier: 'catalog:'
+        version: 1.23.3(@types/node@22.0.0)(yaml@2.6.1)
 
 packages:
 
@@ -825,8 +826,8 @@ packages:
   '@platforma-sdk/model@1.23.0':
     resolution: {integrity: sha512-+Ax97oZ1TGRFDGQjsVzGM2LvpqQ5r0VNToSnKw/+l4HNYtD7mjhEvbRoroG3vTb78x5ZnBe8vC6LHkxkP4Jttw==}
 
-  '@platforma-sdk/tengo-builder@1.19.2':
-    resolution: {integrity: sha512-sjhHTd542AicwLz9pv5IhmKpomNvZHZXb9vXvCP9oRhTEVQP3kuGjKqn0r0zJVkHo2dqpDIf+/AdHlaP2Voq9g==}
+  '@platforma-sdk/tengo-builder@2.0.0':
+    resolution: {integrity: sha512-C3Fnm4Gu4cDC6WiW7mY+3S8N6+KGkwsdi0pKRh2U5EuDunK2GKcdrINnCOdBYuCFFVJmPW5y0FONNFG0H7sUDQ==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -4158,12 +4159,13 @@ snapshots:
       utility-types: 3.11.0
       zod: 3.23.8
 
-  '@platforma-sdk/tengo-builder@1.19.2':
+  '@platforma-sdk/tengo-builder@2.0.0':
     dependencies:
       '@milaboratories/pl-model-backend': 1.0.2
+      '@milaboratories/resolve-helper': 1.1.0
       '@milaboratories/tengo-tester': 1.6.1
       '@oclif/core': 4.0.37
-      canonicalize: 2.0.0
+      canonicalize: 2.1.0
       winston: 3.17.0
     transitivePeerDependencies:
       - supports-color
