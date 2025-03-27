@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.20
+
+### Patch Changes
+
+- 6f0e70c: [sdk/ui-vue] PlAgDataTable hidden columns are shown as visible after selecting empty dataset
+
 ## 1.2.19
 
 ### Patch Changes
