@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.5.0
+
+### Minor Changes
+
+- e004144: Support output from MiXCR Clonotyping v2
+
 ## 1.4.10
 
 ### Patch Changes
