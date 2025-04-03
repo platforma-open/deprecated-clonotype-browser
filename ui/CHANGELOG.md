@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.4.14
+
+### Patch Changes
+
+- 5d795a8: PlAgDataTable update
+
 ## 1.4.13
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.clonotype-browser.ui",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "type": "module",
   "files": [
     "dist/**/*"
