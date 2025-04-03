@@ -10,9 +10,11 @@
     "build": "rm -rf dist && pl-tengo check && pl-tengo build",
     "format": "/usr/bin/env emacs --script ./format.el"
   },
+  "dependencies": {
+    "@platforma-sdk/workflow-tengo": "catalog:"
+  },
   "devDependencies": {
     "@platforma-sdk/tengo-builder": "catalog:",
-    "@platforma-sdk/workflow-tengo": "catalog:",
     "@platforma-sdk/test": "catalog:"
   }
 }
