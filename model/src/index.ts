@@ -32,6 +32,15 @@ function getCloneKeyAxis(spec: PColumnSpec): AxisSpec | undefined {
   return spec.axesSpec.find((ax) => ax.name === 'pl7.app/vdj/clonotypeKey');
 }
 
+/**
+ * Get the scClonotypeKey axis (produced by the MiXCR Clonotyping block v2.x for Single Cell data) from the column spec
+ * @param spec - column spec
+ * @returns the scClonotypeKey axis
+ */
+function getScCloneKeyAxis(spec: PColumnSpec): AxisSpec | undefined {
+  return spec.axesSpec.find((ax) => ax.name === 'pl7.app/vdj/scClonotypeKey');
+}
+
 export type UiState = {
   title?: string;
   settingsOpen: boolean;
@@ -62,6 +71,18 @@ const isAnchorColV2 = (spec: PColumnSpec) =>
   spec.axesSpec[1].name === 'pl7.app/vdj/clonotypeKey' &&
   spec.annotations?.['pl7.app/isAnchor'] === 'true';
 
+
+/**
+ * Check whether the column is a abundance column from v2.x of the MiXCR Clonotyping block for Single Cell data
+ * @param spec - column spec
+ * @returns true if the column is a abundance column from v2.x of the MiXCR Clonotyping block for Single Cell data
+ */
+const isAnchorColScV2 = (spec: PColumnSpec) =>
+    spec.axesSpec.length === 2 &&
+    spec.axesSpec[0].name === 'pl7.app/sampleId' &&
+    spec.axesSpec[1].name === 'pl7.app/vdj/scClonotypeKey' &&
+    spec.annotations?.['pl7.app/isAnchor'] === 'true';
+  
 export const model = BlockModel.create()
   .withArgs({})
   .withUiState<UiState>({
@@ -76,7 +97,7 @@ export const model = BlockModel.create()
   .retentiveOutput('inputOptions', (ctx) => {
     return ctx.resultPool.getOptions((spec) => {
       if (!isPColumnSpec(spec)) return false;
-      return isAnchorColV1(spec) || isAnchorColV2(spec);
+      return isAnchorColV1(spec) || isAnchorColV2(spec) || isAnchorColScV2(spec);
     });
   })
 
@@ -106,18 +127,23 @@ export const model = BlockModel.create()
 
     const isV1 = isAnchorColV1(anchorSpec);
     const isV2 = isAnchorColV2(anchorSpec);
+    const isScV2 = isAnchorColScV2(anchorSpec);
 
-    if (!isV1 && !isV2) return undefined;
+    if (!isV1 && !isV2 && !isScV2) return undefined;
 
     const getAnchorCloneAxis = (spec: PColumnSpec) => {
       if (isV1) {
         return getCloneIdAxis(spec);
       } else if (isV2) {
         return getCloneKeyAxis(spec);
+      } else if (isScV2) {
+        return getScCloneKeyAxis(spec);
       }
     };
 
     const anchorCloneAxis = getAnchorCloneAxis(anchorSpec);
+
+    const clonotypeKeyAxisName = isScV2 ? 'pl7.app/vdj/scClonotypeKey' : 'pl7.app/vdj/clonotypeKey';
 
     if (!anchorCloneAxis) {
       return undefined;
@@ -135,10 +161,12 @@ export const model = BlockModel.create()
           ? // for v1 wi only check block id of axis
             cloneAxis.domain?.['pl7.app/blockId'] === anchorCloneAxis.domain?.['pl7.app/blockId']
           : // for v2 we check clonotypeKey structure, column blockId and column chain
-            cloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] ===
-              anchorCloneAxis.domain?.['pl7.app/vdj/clonotypeKey/structure'] &&
+            cloneAxis.domain?.[clonotypeKeyAxisName + '/structure'] ===
+              anchorCloneAxis.domain?.[clonotypeKeyAxisName + '/structure'] &&
+              cloneAxis.domain?.['pl7.app/vdj/chain'] === anchorCloneAxis.domain?.['pl7.app/vdj/chain'] && 
               col.spec.domain?.['pl7.app/vdj/clonotypingRunId'] === anchorSpec.domain?.['pl7.app/vdj/clonotypingRunId'] &&
-              col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'] && // TODO delete after sc PR in mixcr clonotyping 2 is merged
+              col.spec.domain?.['pl7.app/chain'] === anchorSpec.domain?.['pl7.app/chain'] &&
+              col.spec.domain?.['pl7.app/receptor'] === anchorSpec.domain?.['pl7.app/receptor'] &&
               col.spec.domain?.['pl7.app/vdj/chain'] === anchorSpec.domain?.['pl7.app/vdj/chain'];
       });
 
