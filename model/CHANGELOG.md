@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.6.0
+
+### Minor Changes
+
+- a21f3e3: Support single cell output from MiXCRv2
+
 ## 1.5.0
 
 ### Minor Changes
