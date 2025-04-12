@@ -7,12 +7,12 @@ packages:
 
 catalog:
   '@changesets/cli': ^2.28.1
-  '@platforma-sdk/block-tools': ^2.5.30
-  '@platforma-sdk/model': ^1.26.0
-  '@platforma-sdk/tengo-builder': ^2.0.2
-  '@platforma-sdk/test': ^1.27.4
-  '@platforma-sdk/ui-vue': ^1.27.5
-  '@platforma-sdk/workflow-tengo': ^3.2.1
+  '@platforma-sdk/block-tools': ^2.5.35
+  '@platforma-sdk/model': ^1.29.0
+  '@platforma-sdk/tengo-builder': ^2.0.3
+  '@platforma-sdk/test': ^1.29.1
+  '@platforma-sdk/ui-vue': ^1.29.0
+  '@platforma-sdk/workflow-tengo': ^4.0.6
   '@types/lodash': ^4.17.16
   '@vitejs/plugin-vue': ^5.2.3
   '@vueuse/core': ^13.0.0
@@ -24,6 +24,7 @@ catalog:
   'vitest': ^2.1.8
   'vue': ^3.5.13
   'vue-tsc': ^2.2.8
+  'js-yaml': ^4.1.0
 
   # other blocks used in tests
 
