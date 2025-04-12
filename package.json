@@ -7,11 +7,13 @@
     "mark-stable": "turbo run mark-stable",
     "watch": "turbo watch build",
     "changeset": "changeset",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "update-sdk": "node scripts/update-sdk-packages.js"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",
-    "turbo": "catalog:"
+    "turbo": "catalog:",
+    "js-yaml": "catalog:"
   },
   "packageManager": "pnpm@9.12.0",
   "//": {
