@@ -24,7 +24,7 @@
       "ui": "@platforma-open/milaboratories.clonotype-browser.ui/dist"
     },
     "meta": {
-      "title": "Clonotype Browser",
+      "title": "Clonotype Browser (Deprecated)",
       "logo": "file:../logos/block-logo.png",
       "url": "https://github.com/platforma-open/clonotype-browser",
       "docs": "https://github.com/platforma-open/clonotype-browser/docs",
@@ -33,14 +33,15 @@
       "longDescription": "file:../docs/description.md",
       "changelog": "file:./CHANGELOG.md",
       "tags": [
-        "view"
+        "airr",
+        "visualization"
       ],
       "organization": {
         "name": "MiLaboratories Inc",
         "url": "https://milaboratories.com/",
         "logo": "file:../logos/organization-logo.png"
       },
-      "marketplaceRanking": 10000
+      "marketplaceRanking": 1020
     }
   },
   "devDependencies": {
