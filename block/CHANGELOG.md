@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.6.11
+
+### Patch Changes
+
+- 6d9f61d: Add deprecated label to block
+
 ## 1.6.10
 
 ### Patch Changes
