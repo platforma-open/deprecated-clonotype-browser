@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.ui
 
+## 1.4.15
+
+### Patch Changes
+
+- b087597: Deprecated block removed from Add Block.
+
 ## 1.4.14
 
 ### Patch Changes
