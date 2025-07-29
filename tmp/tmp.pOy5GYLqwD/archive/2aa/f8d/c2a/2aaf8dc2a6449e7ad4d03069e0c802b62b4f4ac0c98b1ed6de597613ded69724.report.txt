@@ -1,0 +1,29 @@
+Analysis date: Tue Jul 29 13:26:29 GMT 2025
+Input file(s): result.alignments.vdjca
+Output file(s): result.clns
+Version: 4.7.0-139-develop; built=Wed Nov 27 21:42:09 GMT 2024; rev=f151388cf1; lib=repseqio.v5.1
+Command line arguments: assemble --report result.assemble.report.txt --json-report result.assemble.report.json result.alignments.vdjca result.clns
+Analysis time: 203ms
+Final clonotype count: 4
+Reads used in clonotypes, percent of total: 4 (40%)
+Average number of reads per clonotype: 1
+Reads dropped due to the lack of a clone sequence, percent of total: 0 (0%)
+Reads dropped due to a too short clonal sequence, percent of total: 0 (0%)
+Reads dropped due to low quality, percent of total: 0 (0%)
+Reads dropped due to failed mapping, percent of total: 5 (50%)
+Reads dropped with low quality clones, percent of total: 0 (0%)
+Aligned reads processed: 9
+Reads used in clonotypes before clustering, percent of total: 4 (40%)
+Number of reads used as a core, percent of used: 4 (100%)
+Mapped low quality reads, percent of used: 0 (0%)
+Reads clustered in PCR error correction, percent of used: 0 (0%)
+Reads pre-clustered due to the similar VJC-lists, percent of used: 0 (0%)
+Clonotypes dropped as low quality: 0
+Clonotypes eliminated by PCR error correction: 0
+Clonotypes pre-clustered due to the similar VJC-lists: 0
+Clones dropped in post filtering: 0 (0%)
+Reads dropped in post filtering: 0.0 (0%)
+Reads filtered by tag prefix: 0 (0%)
+TRA chains: 4 (100%)
+TRA non-functional: 0 (0%)
+======================================

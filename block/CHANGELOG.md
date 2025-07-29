@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.6.13
+
+### Patch Changes
+
+- cbc15d5: chore: bump version
+
 ## 1.6.12
 
 ### Patch Changes

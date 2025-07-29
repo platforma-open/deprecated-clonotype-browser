@@ -3,7 +3,7 @@
 > PL_PKG_DEV=local turbo run test --dry-run=json
 
 {
-  "id": "30I8mHJelUAnK6WbH2DPACflAfD",
+  "id": "30YDDdcGHiYXU6GKVrCWzFcyvxv",
   "version": "1",
   "turboVersion": "2.4.4",
   "monorepo": true,
@@ -37,19 +37,20 @@
       "taskId": "@platforma-open/milaboratories.clonotype-browser#build",
       "task": "build",
       "package": "@platforma-open/milaboratories.clonotype-browser",
-      "hash": "22ea2fe3a599f6c7",
+      "hash": "862b9a3d9bb24a22",
       "inputs": {
-        "CHANGELOG.md": "e7bd3834635efc9ccfeb5cf1c8de86f4cd3da30b",
+        "CHANGELOG.md": "c85e9f4e952bde28f1c330e3f98901aa976f464f",
         "index.d.ts": "1ba908d82f37b11a66fc326a88a79ee6ef965fc7",
         "index.js": "e7798d420641e13b2104408b1cf4df20f67c654e",
-        "package.json": "6dcb1a375262f2f7a45abe8744e68b28449c534a"
+        "package.json": "504ee984c75295ef37f095184dd1f14f24d5567a"
       },
       "hashOfExternalDependencies": "b640b359e41d8f86",
       "cache": {
-        "local": false,
+        "local": true,
         "remote": false,
-        "status": "MISS",
-        "timeSaved": 0
+        "status": "HIT",
+        "source": "LOCAL",
+        "timeSaved": 1408
       },
       "command": "rm -rf ./block-pack && block-tools pack",
       "cliArguments": [],
@@ -105,12 +106,12 @@
       "taskId": "@platforma-open/milaboratories.clonotype-browser#test",
       "task": "test",
       "package": "@platforma-open/milaboratories.clonotype-browser",
-      "hash": "b30e3344da8cfd0a",
+      "hash": "c8ec8afc4b2d4503",
       "inputs": {
-        "CHANGELOG.md": "e7bd3834635efc9ccfeb5cf1c8de86f4cd3da30b",
+        "CHANGELOG.md": "c85e9f4e952bde28f1c330e3f98901aa976f464f",
         "index.d.ts": "1ba908d82f37b11a66fc326a88a79ee6ef965fc7",
         "index.js": "e7798d420641e13b2104408b1cf4df20f67c654e",
-        "package.json": "6dcb1a375262f2f7a45abe8744e68b28449c534a"
+        "package.json": "504ee984c75295ef37f095184dd1f14f24d5567a"
       },
       "hashOfExternalDependencies": "b640b359e41d8f86",
       "cache": {
@@ -190,7 +191,7 @@
         "remote": false,
         "status": "HIT",
         "source": "LOCAL",
-        "timeSaved": 5149
+        "timeSaved": 4764
       },
       "command": "tsup && vite build && block-tools build-model",
       "cliArguments": [],
@@ -316,7 +317,7 @@
       "taskId": "@platforma-open/milaboratories.clonotype-browser.test#build",
       "task": "build",
       "package": "@platforma-open/milaboratories.clonotype-browser.test",
-      "hash": "69fe412adac52181",
+      "hash": "48237b46712572dc",
       "inputs": {
         "CHANGELOG.md": "610d9508ce42e7be8d7356ffbcbd8d45d5e51e10",
         "assets/.gitkeep": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -387,7 +388,7 @@
       "taskId": "@platforma-open/milaboratories.clonotype-browser.test#test",
       "task": "test",
       "package": "@platforma-open/milaboratories.clonotype-browser.test",
-      "hash": "47b78f4d74710fbf",
+      "hash": "47462f388597f463",
       "inputs": {
         "CHANGELOG.md": "610d9508ce42e7be8d7356ffbcbd8d45d5e51e10",
         "assets/.gitkeep": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
@@ -479,10 +480,11 @@
       },
       "hashOfExternalDependencies": "11c84f25b335c2c4",
       "cache": {
-        "local": false,
+        "local": true,
         "remote": false,
-        "status": "MISS",
-        "timeSaved": 0
+        "status": "HIT",
+        "source": "LOCAL",
+        "timeSaved": 12758
       },
       "command": "vue-tsc -b && vite build",
       "cliArguments": [],
@@ -629,7 +631,7 @@
         "remote": false,
         "status": "HIT",
         "source": "LOCAL",
-        "timeSaved": 11350
+        "timeSaved": 11672
       },
       "command": "rm -rf dist && pl-tengo check && pl-tengo build",
       "cliArguments": [],
@@ -754,7 +756,7 @@
   "user": "github-merge-queue[bot]",
   "scm": {
     "type": "git",
-    "sha": "d03f0c0b1d61e0ca688972c26cc200e073b7c836",
+    "sha": "2d1bcd01ff3ddff80c31fc5418f93c558bb26e8d",
     "branch": "main"
   }
 }
