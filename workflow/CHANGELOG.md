@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.21
+
+### Patch Changes
+
+- 5b6ca6b: Removed from add block view.
+
 ## 1.2.20
 
 ### Patch Changes

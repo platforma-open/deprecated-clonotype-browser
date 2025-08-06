@@ -1,0 +1,32 @@
+Analysis date: Wed Aug 06 07:27:56 GMT 2025
+Input file(s): /storage/controllers/data/work/workdirs/0x8BD/input_R1.fastq.gz,/storage/controllers/data/work/workdirs/0x8BD/input_R2.fastq.gz
+Output file(s): result.alignments.vdjca
+Version: 4.7.0-139-develop; built=Wed Nov 27 21:42:09 GMT 2024; rev=f151388cf1; lib=repseqio.v5.1
+Command line arguments: align --report result.align.report.txt --json-report result.align.report.json --preset milab-human-dna-xcr-7genes-multiplex --save-output-file-names result.align.list.tsv --append-export-clones-field -vHit --append-export-clones-field -dHit --append-export-clones-field -jHit --append-export-clones-field -cHit --append-export-clones-field -nFeature VRegion germline --append-export-clones-field -nFeature DRegion germline --append-export-clones-field -nFeature JRegion germline --append-export-clones-field -isProductive CDR3 --append-export-clones-field -isOOF CDR3 --append-export-clones-field -hasStops CDR3 input_{{R}}.fastq.gz result.alignments.vdjca
+Analysis time: 1.56s
+Total sequencing reads: 10
+Successfully aligned reads: 9 (90%)
+Coverage (percent of successfully aligned):
+  CDR3: 9 (100%)
+  FR3_TO_FR4: 0 (0%)
+  CDR2_TO_FR4: 0 (0%)
+  FR2_TO_FR4: 0 (0%)
+  CDR1_TO_FR4: 0 (0%)
+  VDJRegion: 0 (0%)
+Alignment failed: absence of V hits: 1 (10%)
+Overlapped: 1 (10%)
+Overlapped and aligned: 1 (10%)
+Overlapped and not aligned: 0 (0%)
+Alignment-aided overlaps, percent of overlapped and aligned: 0 (0%)
+V gene chimeras: 1 (10%)
+Realigned with forced non-floating bound: 9 (90%)
+Realigned with forced non-floating right bound in left read: 0 (0%)
+Realigned with forced non-floating left bound in right read: 0 (0%)
+TRA chains: 9 (100%)
+TRA non-functional: 0 (0%)
+Trimming report:
+  R1 reads trimmed left: 0 (0%)
+  R1 reads trimmed right: 0 (0%)
+  Average R1 nucleotides trimmed left: 0.0
+  Average R1 nucleotides trimmed right: 0.0
+======================================

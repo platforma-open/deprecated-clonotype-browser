@@ -1,5 +1,15 @@
 # @platforma-open/milaboratories.clonotype-browser
 
+## 1.6.14
+
+### Patch Changes
+
+- 5b6ca6b: Removed from add block view.
+- Updated dependencies [5b6ca6b]
+  - @platforma-open/milaboratories.clonotype-browser.model@1.6.1
+  - @platforma-open/milaboratories.clonotype-browser.ui@1.4.16
+  - @platforma-open/milaboratories.clonotype-browser.workflow@1.2.21
+
 ## 1.6.13
 
 ### Patch Changes
