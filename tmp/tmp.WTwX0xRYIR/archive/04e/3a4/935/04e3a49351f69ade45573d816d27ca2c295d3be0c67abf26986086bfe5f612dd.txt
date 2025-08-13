@@ -1,0 +1,85 @@
+
+>>>>>>>>>>>>>>>>>>>>>>> mixcr align <<<<<<<<<<<<<<<<<<<<<<<
+Running:
+mixcr align --report result.align.report.txt --json-report result.align.report.json --preset milab-human-dna-xcr-7genes-multiplex --save-output-file-names result.align.list.tsv --append-export-clones-field -vHit --append-export-clones-field -dHit --append-export-clones-field -jHit --append-export-clones-field -cHit --append-export-clones-field -nFeature VRegion germline --append-export-clones-field -nFeature DRegion germline --append-export-clones-field -nFeature JRegion germline --append-export-clones-field -isProductive CDR3 --append-export-clones-field -isOOF CDR3 --append-export-clones-field -hasStops CDR3 input_{{R}}.fastq.gz result.alignments.vdjca
+[==PROGRESS==]Alignment: 0%
+====================== report: align ======================
+Analysis time: 1.55s
+Total sequencing reads: 10
+Successfully aligned reads: 9 (90%)
+Coverage (percent of successfully aligned):
+  CDR3: 9 (100%)
+  FR3_TO_FR4: 0 (0%)
+  CDR2_TO_FR4: 0 (0%)
+  FR2_TO_FR4: 0 (0%)
+  CDR1_TO_FR4: 0 (0%)
+  VDJRegion: 0 (0%)
+Alignment failed: absence of V hits: 1 (10%)
+Overlapped: 1 (10%)
+Overlapped and aligned: 1 (10%)
+Overlapped and not aligned: 0 (0%)
+Alignment-aided overlaps, percent of overlapped and aligned: 0 (0%)
+V gene chimeras: 1 (10%)
+Realigned with forced non-floating bound: 9 (90%)
+Realigned with forced non-floating right bound in left read: 0 (0%)
+Realigned with forced non-floating left bound in right read: 0 (0%)
+TRA chains: 9 (100%)
+TRA non-functional: 0 (0%)
+Trimming report:
+  R1 reads trimmed left: 0 (0%)
+  R1 reads trimmed right: 0 (0%)
+  Average R1 nucleotides trimmed left: 0.0
+  Average R1 nucleotides trimmed right: 0.0
+
+>>>>>>>>>>>>>>>>>>>>>> mixcr assemble <<<<<<<<<<<<<<<<<<<<<<
+Running:
+mixcr assemble --report result.assemble.report.txt --json-report result.assemble.report.json result.alignments.vdjca result.clns
+[==PROGRESS==]Initialization: progress unknown
+===================== report: assemble =====================
+Analysis time: 200ms
+Final clonotype count: 4
+Reads used in clonotypes, percent of total: 4 (40%)
+Average number of reads per clonotype: 1
+Reads dropped due to the lack of a clone sequence, percent of total: 0 (0%)
+Reads dropped due to a too short clonal sequence, percent of total: 0 (0%)
+Reads dropped due to low quality, percent of total: 0 (0%)
+Reads dropped due to failed mapping, percent of total: 5 (50%)
+Reads dropped with low quality clones, percent of total: 0 (0%)
+Aligned reads processed: 9
+Reads used in clonotypes before clustering, percent of total: 4 (40%)
+Number of reads used as a core, percent of used: 4 (100%)
+Mapped low quality reads, percent of used: 0 (0%)
+Reads clustered in PCR error correction, percent of used: 0 (0%)
+Reads pre-clustered due to the similar VJC-lists, percent of used: 0 (0%)
+Clonotypes dropped as low quality: 0
+Clonotypes eliminated by PCR error correction: 0
+Clonotypes pre-clustered due to the similar VJC-lists: 0
+Clones dropped in post filtering: 0 (0%)
+Reads dropped in post filtering: 0.0 (0%)
+Reads filtered by tag prefix: 0 (0%)
+TRA chains: 4 (100%)
+TRA non-functional: 0 (0%)
+
+>>>>>>>>>>>>>>>>>>>>>>>>> mixcr qc <<<<<<<<<<<<<<<<<<<<<<<<<
+Running:
+mixcr qc --print-to-stdout result.clns result.qc.txt result.qc.json
+
+  Successfully aligned reads:                     90.0% [OK]
+  Off target (non TCR/IG) reads:                  0.0%  [OK]
+  Reads with no V or J hits:                      10.0% [OK]
+  Overlapped paired-end reads:                    10.0% [ALERT]
+  Reads used in clonotypes:                       40.0% [ALERT]
+  Alignments that do not cover CDR3:              0.0%  [OK]
+  Alignments dropped due to low sequence quality: 0.0%  [OK]
+  Clones dropped in post-filtering:               0.0%  [OK]
+  Alignments dropped in clones post-filtering:    0.0%  [OK]
+
+>>>>>>>>>>>>>>>>>>>> mixcr exportClones <<<<<<<<<<<<<<<<<<<<
+Running:
+mixcr exportClones result.clns result.clones.tsv
+WARNING: It's recommended to run `findAlleles` before exporting `-nFeature <gene_feature> germline` because otherwise mutations count will include allelic mutations.
+WARNING: It's recommended to run `findAlleles` before exporting `-nFeature <gene_feature> germline` because otherwise mutations count will include allelic mutations.
+WARNING: It's recommended to run `findAlleles` before exporting `-nFeature <gene_feature> germline` because otherwise mutations count will include allelic mutations.
+[==PROGRESS==]Exporting TRA
+[==PROGRESS==]Exporting clones: 25%
+Analysis finished successfully.

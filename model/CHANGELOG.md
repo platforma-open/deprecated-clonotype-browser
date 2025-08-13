@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.model
 
+## 1.6.2
+
+### Patch Changes
+
+- 9176ca2: Removed from Add Block
+
 ## 1.6.1
 
 ### Patch Changes

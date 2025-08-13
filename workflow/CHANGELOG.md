@@ -1,5 +1,11 @@
 # @platforma-open/milaboratories.clonotype-browser.workflow
 
+## 1.2.22
+
+### Patch Changes
+
+- 9176ca2: Removed from Add Block
+
 ## 1.2.21
 
 ### Patch Changes
