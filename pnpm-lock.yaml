@@ -4131,7 +4131,7 @@ snapshots:
       '@milaboratories/ts-helpers': 1.1.5
       '@platforma-sdk/block-tools': 2.5.68
       '@platforma-sdk/model': 1.29.0
-      '@platforma-sdk/workflow-tengo': ^5.6.3
+      '@platforma-sdk/workflow-tengo': 4.0.6
       canonicalize: 2.1.0
       denque: 2.1.0
       lru-cache: 11.1.0
@@ -4315,7 +4315,7 @@ snapshots:
 
   '@platforma-open/milaboratories.mixcr-clonotyping.workflow@1.19.0':
     dependencies:
-      '@platforma-sdk/workflow-tengo': ^5.6.3
+      '@platforma-sdk/workflow-tengo': 3.2.1
 
   '@platforma-open/milaboratories.mixcr-clonotyping@1.8.24(typescript@5.8.2)':
     dependencies:
